@@ -36,7 +36,7 @@ async def plot_kraken_data(ctx):
     # Remove the temporary file
     os.remove(plot_file_path)
 
-    await msg.edit(content=f"Plotted.")
+    await msg.edit(content="Plotted.")
 
 
 bot.run(os.environ["DISCORD_TOKEN"])
