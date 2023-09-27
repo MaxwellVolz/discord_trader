@@ -1,902 +1,244 @@
-2023-09-27 11:55:42,223 - WARNING - PyNaCl is not installed, voice will NOT be supported
-2023-09-27 11:55:42,224 - INFO - logging in using static token
-2023-09-27 11:55:43,027 - INFO - Shard ID None has connected to Gateway (Session ID: f8f6f74d41bc763fae536b21acd37f74).
-2023-09-27 11:55:51,178 - ERROR - An error occurred: name 'json' is not defined
-2023-09-27 11:55:56,362 - ERROR - An error occurred: name 'json' is not defined
-2023-09-27 11:56:23,801 - WARNING - PyNaCl is not installed, voice will NOT be supported
-2023-09-27 11:56:23,803 - INFO - logging in using static token
-2023-09-27 11:56:24,579 - INFO - Shard ID None has connected to Gateway (Session ID: 10d1420036ea6ae7fc67a8df06c252b7).
-2023-09-27 11:56:28,994 - INFO - Fetched new data from Kraken: 
-[
-    [
-        "26160.60000",
-        "0.01245209",
-        1695837908.283345,
-        "s",
-        "m",
-        "",
-        62972902
-    ],
-    [
-        "26160.20000",
-        "0.19113003",
-        1695837908.2839355,
-        "s",
-        "m",
-        "",
-        62972903
-    ],
-    [
-        "26160.00000",
-        "0.01911314",
-        1695837908.2839944,
-        "s",
-        "m",
-        "",
-        62972904
-    ],
-    [
-        "26160.00000",
-        "0.00250000",
-        1695837908.2840817,
-        "s",
-        "m",
-        "",
-        62972905
-    ],
-    [
-        "26158.60000",
-        "0.00114685",
-        1695837908.2841396,
-        "s",
-        "m",
-        "",
-        62972906
-    ]
-]
-2023-09-27 11:56:33,983 - INFO - Fetched new data from Kraken: 
-[
-    [
-        "26160.60000",
-        "0.01245209",
-        1695837908.283345,
-        "s",
-        "m",
-        "",
-        62972902
-    ],
-    [
-        "26160.20000",
-        "0.19113003",
-        1695837908.2839355,
-        "s",
-        "m",
-        "",
-        62972903
-    ],
-    [
-        "26160.00000",
-        "0.01911314",
-        1695837908.2839944,
-        "s",
-        "m",
-        "",
-        62972904
-    ],
-    [
-        "26160.00000",
-        "0.00250000",
-        1695837908.2840817,
-        "s",
-        "m",
-        "",
-        62972905
-    ],
-    [
-        "26158.60000",
-        "0.00114685",
-        1695837908.2841396,
-        "s",
-        "m",
-        "",
-        62972906
-    ]
-]
-2023-09-27 11:59:04,823 - WARNING - PyNaCl is not installed, voice will NOT be supported
-2023-09-27 11:59:04,825 - INFO - logging in using static token
-2023-09-27 11:59:05,583 - INFO - Shard ID None has connected to Gateway (Session ID: 053e6d9f48325acadae06d8058099788).
-2023-09-27 11:59:09,723 - ERROR - An error occurred: 'NoneType' object has no attribute 'head'
-2023-09-27 11:59:09,750 - INFO - Appended DataFrame: 
-     Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
-0  26155.8  0.001000  1.695838e+09        b            l       62972930
-1  26155.8  0.036667  1.695838e+09        b            l       62972931
-2  26155.8  0.000192  1.695838e+09        b            l       62972932
-3  26155.7  0.236028  1.695838e+09        s            l       62972933
-4  26155.8  0.002677  1.695838e+09        b            m       62972934
-2023-09-27 11:59:09,751 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Timestamp       float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 11:59:09,774 - ERROR - Unhandled exception in internal background task 'trading_bot'.
-Traceback (most recent call last):
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 239, in _loop
-    await self.coro(*args, **kwargs)
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 272, in trading_bot
-    await trading_bot_instance.run()
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 244, in run
-    entry_price
-UnboundLocalError: cannot access local variable 'entry_price' where it is not associated with a value
-2023-09-27 12:00:28,481 - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-11' coro=<Loop._loop() done, defined at C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py:200> exception=UnboundLocalError("cannot access local variable 'entry_price' where it is not associated with a value")>
-Traceback (most recent call last):
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 264, in _loop
-    raise exc
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 239, in _loop
-    await self.coro(*args, **kwargs)
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 272, in trading_bot
-    global trading_bot_instance
-        ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 244, in run
-UnboundLocalError: cannot access local variable 'entry_price' where it is not associated with a value
-2023-09-27 12:00:30,468 - WARNING - PyNaCl is not installed, voice will NOT be supported
-2023-09-27 12:00:30,471 - INFO - logging in using static token
-2023-09-27 12:00:31,435 - INFO - Shard ID None has connected to Gateway (Session ID: dafebae5edf973795e6c49626e155208).
-2023-09-27 12:00:35,541 - ERROR - An error occurred: 'NoneType' object has no attribute 'head'
-2023-09-27 12:00:35,567 - INFO - Appended DataFrame: 
-     Price   Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
-0  26155.0  0.00010  1.695838e+09        s            m       62972950
-1  26155.0  0.02057  1.695838e+09        s            m       62972951
-2  26153.1  0.00128  1.695838e+09        s            m       62972952
-3  26152.1  0.00100  1.695838e+09        s            m       62972953
-4  26151.9  0.00010  1.695838e+09        s            m       62972954
-2023-09-27 12:00:35,568 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Timestamp       float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:00:35,583 - ERROR - Unhandled exception in internal background task 'trading_bot'.
-Traceback (most recent call last):
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 239, in _loop
-    await self.coro(*args, **kwargs)
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 274, in trading_bot
-    await trading_bot_instance.run()
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 245, in run
-    exit_met, exit_type, exit_price, profit_or_loss = self.evaluate_exit_conditions(
-                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 189, in evaluate_exit_conditions
-    profit_or_loss = "loss" if exit_price < entry_price else "profit"
-                               ^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: '<' not supported between instances of 'float' and 'NoneType'
-2023-09-27 12:01:32,572 - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-11' coro=<Loop._loop() done, defined at C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py:200> exception=TypeError("'<' not supported between instances of 'float' and 'NoneType'")>
-Traceback (most recent call last):
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 264, in _loop
-    raise exc
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 239, in _loop
-    await self.coro(*args, **kwargs)
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 274, in trading_bot
-    async def trading_bot():
-            ^^^^^^^^^^^^^^^^^
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 245, in run
-    entry_price = self.df_resampled.iloc[-1]["Price_close"]
-                                                  ^^^^^^^^^
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 189, in evaluate_exit_conditions
-    exit_conditions_met = True
-                               
-TypeError: '<' not supported between instances of 'float' and 'NoneType'
-2023-09-27 12:01:34,880 - WARNING - PyNaCl is not installed, voice will NOT be supported
-2023-09-27 12:01:34,881 - INFO - logging in using static token
-2023-09-27 12:01:35,665 - INFO - Shard ID None has connected to Gateway (Session ID: 27b412117096207810a11d501f4423fd).
-2023-09-27 12:01:40,926 - ERROR - An error occurred: 'NoneType' object has no attribute 'head'
-2023-09-27 12:01:40,941 - INFO - Appended DataFrame: 
-     Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
-0  26151.9  0.000100  1.695838e+09        s            m       62972954
-1  26151.0  0.038369  1.695838e+09        s            m       62972955
-2  26150.5  0.000972  1.695838e+09        s            m       62972956
-3  26150.0  0.000100  1.695838e+09        s            m       62972957
-4  26150.0  2.675340  1.695838e+09        s            m       62972958
-2023-09-27 12:01:40,941 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Timestamp       float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:01:40,954 - ERROR - Unhandled exception in internal background task 'trading_bot'.
-Traceback (most recent call last):
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 239, in _loop
-    await self.coro(*args, **kwargs)
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 277, in trading_bot
-    await trading_bot_instance.run()
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 248, in run
-    exit_met, exit_type, exit_price, profit_or_loss = self.evaluate_exit_conditions(
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: cannot unpack non-iterable NoneType object
-2023-09-27 12:02:55,807 - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-11' coro=<Loop._loop() done, defined at C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py:200> exception=TypeError('cannot unpack non-iterable NoneType object')>
-Traceback (most recent call last):
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 264, in _loop
-    raise exc
-  File "C:\Users\narfa\AppData\Local\pypoetry\Cache\virtualenvs\discord-crypto-trader-ZWqp0URJ-py3.11\Lib\site-packages\discord\ext\tasks\__init__.py", line 239, in _loop
-    await self.coro(*args, **kwargs)
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 277, in trading_bot
-  File "C:\Users\narfa\Documents\_git\discord_crypto_trader\bots\trading_bot.py", line 248, in run
-    if entry_price is not None:
-TypeError: cannot unpack non-iterable NoneType object
-2023-09-27 12:03:56,591 - WARNING - PyNaCl is not installed, voice will NOT be supported
-2023-09-27 12:03:56,593 - INFO - logging in using static token
-2023-09-27 12:03:57,625 - INFO - Shard ID None has connected to Gateway (Session ID: e565e8bd23cf620aa169cc5605bc1f6e).
-2023-09-27 12:04:01,061 - ERROR - An error occurred: 'NoneType' object has no attribute 'head'
-2023-09-27 12:04:01,086 - INFO - Appended DataFrame: 
-     Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
-0  26144.8  0.001000  1.695838e+09        s            l       62972986
-1  26144.8  0.001000  1.695838e+09        s            l       62972987
-2  26144.8  0.451106  1.695838e+09        s            l       62972988
-3  26144.8  0.048391  1.695838e+09        s            l       62972989
-4  26144.8  0.010500  1.695838e+09        s            l       62972990
-2023-09-27 12:04:01,087 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Timestamp       float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:01,102 - INFO - entry_price is None.
-2023-09-27 12:04:06,218 - INFO - DataFrame before resampling: 
-                                 Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                                            
-2023-09-27 18:06:51.544205312  26144.8  0.001000        s            l       62972986
-2023-09-27 18:06:51.544239872  26144.8  0.001000        s            l       62972987
-2023-09-27 18:06:51.544272896  26144.8  0.451106        s            l       62972988
-2023-09-27 18:06:51.713887232  26144.8  0.048391        s            l       62972989
-2023-09-27 18:06:51.724636672  26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:06,220 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:06,254 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:06,255 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:06,280 - INFO - entry_price is None.
-2023-09-27 12:04:11,140 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:11,141 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:11,162 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:11,163 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:11,194 - INFO - entry_price is None.
-2023-09-27 12:04:16,048 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:16,049 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:16,081 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:16,082 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:16,098 - INFO - entry_price is None.
-2023-09-27 12:04:21,261 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:21,262 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:21,283 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:21,284 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:21,308 - INFO - entry_price is None.
-2023-09-27 12:04:26,154 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:26,155 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:26,174 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:26,175 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:26,191 - INFO - entry_price is None.
-2023-09-27 12:04:31,235 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:31,236 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:31,258 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:31,259 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:31,276 - INFO - entry_price is None.
-2023-09-27 12:04:36,145 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:36,146 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:36,173 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:36,175 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:36,202 - INFO - entry_price is None.
-2023-09-27 12:04:41,232 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:41,234 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:41,266 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:41,267 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:41,283 - INFO - entry_price is None.
-2023-09-27 12:04:45,932 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:45,933 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:45,946 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:45,946 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:45,960 - INFO - entry_price is None.
-2023-09-27 12:04:51,140 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:51,141 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:51,172 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:51,173 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:51,197 - INFO - entry_price is None.
-2023-09-27 12:04:56,210 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:04:56,212 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:04:56,238 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:04:56,239 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:04:56,261 - INFO - entry_price is None.
-2023-09-27 12:05:01,186 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:01,186 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:01,204 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:01,204 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:01,219 - INFO - entry_price is None.
-2023-09-27 12:05:06,097 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:06,098 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:06,118 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:06,119 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:06,135 - INFO - entry_price is None.
-2023-09-27 12:05:11,102 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:11,103 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:11,131 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:11,132 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:11,161 - INFO - entry_price is None.
-2023-09-27 12:05:16,107 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:16,107 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:16,125 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:16,126 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:16,142 - INFO - entry_price is None.
-2023-09-27 12:05:21,165 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:21,166 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:21,196 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:21,196 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:21,216 - INFO - entry_price is None.
-2023-09-27 12:05:26,120 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:26,121 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:26,143 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:26,144 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:26,161 - INFO - entry_price is None.
-2023-09-27 12:05:31,070 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:31,071 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:31,088 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:31,089 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:31,106 - INFO - entry_price is None.
-2023-09-27 12:05:35,967 - INFO - DataFrame before resampling: 
-             Price    Volume Buy/Sell Market/Limit Misc   TradeID
-Timestamp                                                        
-NaT        26144.8  0.001000        s            l       62972986
-NaT        26144.8  0.001000        s            l       62972987
-NaT        26144.8  0.451106        s            l       62972988
-NaT        26144.8  0.048391        s            l       62972989
-NaT        26144.8  0.010500        s            l       62972990
-2023-09-27 12:05:35,968 - INFO - DataFrame dtypes: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:35,982 - INFO - Appended DataFrame: 
-     Price    Volume Buy/Sell Market/Limit Misc   TradeID  Timestamp
-0  26144.8  0.001000        s            l       62972986        NaN
-1  26144.8  0.001000        s            l       62972987        NaN
-2  26144.8  0.451106        s            l       62972988        NaN
-3  26144.8  0.048391        s            l       62972989        NaN
-4  26144.8  0.010500        s            l       62972990        NaN
-2023-09-27 12:05:35,983 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-Timestamp       float64
-dtype: object
-2023-09-27 12:05:35,998 - INFO - entry_price is None.
-2023-09-27 12:05:41,128 - ERROR - An error occurred: 'NoneType' object has no attribute 'head'
-2023-09-27 12:05:41,143 - INFO - Appended DataFrame: 
-     Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
-0  26130.7  0.000230  1.695838e+09        s            m       62973013
-1  26130.0  0.000100  1.695838e+09        s            m       62973014
-2  26129.4  0.085283  1.695838e+09        s            m       62973015
-3  26125.5  0.002413  1.695838e+09        s            m       62973016
-4  26125.0  0.000100  1.695838e+09        s            m       62973017
-2023-09-27 12:05:41,144 - INFO - DataFrame dtypes after casting: 
-Price           float64
-Volume          float64
-Timestamp       float64
-Buy/Sell         object
-Market/Limit     object
-Misc             object
-TradeID           int64
-dtype: object
-2023-09-27 12:05:41,158 - INFO - entry_price is None.
+2023-09-27 14:05:55,811 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 14:05:55,812 - INFO - logging in using static token
+2023-09-27 14:05:56,565 - INFO - Shard ID None has connected to Gateway (Session ID: 97c9b72a5f206b7b30d6592e78e0230d).
+2023-09-27 14:06:00,082 - INFO - Initializing TradeBot...
+2023-09-27 14:06:00,575 - INFO - Running TradeBot...
+2023-09-27 14:06:00,575 - INFO - Fetching data...
+2023-09-27 14:06:01,649 - INFO - DataFrame head:     Price  Volume     Timestamp Buy/Sell Market/Limit Misc  TradeID
+0  122.00  0.1000  1.381095e+09        s            l             1
+1  123.61  0.1000  1.381179e+09        s            l             2
+2  123.91  1.0000  1.381201e+09        s            l             3
+3  123.90  0.9916  1.381201e+09        s            l             4
+4  124.19  1.0000  1.381210e+09        s            l             5
+2023-09-27 14:06:01,649 - INFO - DataFrame columns: Index(['Price', 'Volume', 'Timestamp', 'Buy/Sell', 'Market/Limit', 'Misc',
+       'TradeID'],
+      dtype='object')
+2023-09-27 14:06:01,650 - INFO - First Timestamp: 2013-10-06 21:34:16.090794752, Last Timestamp: 2013-11-04 16:19:02.793000192, Duration: 28 days 18:44:46.702205440
+2023-09-27 14:06:01,653 - INFO - Standard Deviation of Price: 2.722168352144585
+2023-09-27 14:06:01,653 - INFO - Average Trade Volume: 0.5708040704799999
+2023-09-27 14:06:01,653 - INFO - Selected Bucket Size: 15T
+2023-09-27 14:06:01,653 - INFO - Calculating indicators...
+2023-09-27 14:06:01,666 - INFO - DataFrame head:                      Price                      Volume
+                      open   high    low  close Volume
+Timestamp                                             
+2013-10-06 21:30:00  122.0  122.0  122.0  122.0    0.1
+2013-10-06 21:45:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:00:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:15:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:30:00    NaN    NaN    NaN    NaN    0.0
+2023-09-27 14:06:01,666 - INFO - DataFrame columns: MultiIndex([( 'Price',   'open'),
+            ( 'Price',   'high'),
+            ( 'Price',    'low'),
+            ( 'Price',  'close'),
+            ('Volume', 'Volume')],
+           )
+2023-09-27 14:06:01,674 - INFO - DataFrame head: Empty DataFrame
+Columns: [open_Price, high_Price, low_Price, close_Price, Volume_Volume, BBAND_middle, BBAND_upper, BBAND_lower, RSI, STOCH_fastk, STOCH_fastd]
+Index: []
+2023-09-27 14:06:01,674 - INFO - DataFrame columns: Index(['open_Price', 'high_Price', 'low_Price', 'close_Price', 'Volume_Volume',
+       'BBAND_middle', 'BBAND_upper', 'BBAND_lower', 'RSI', 'STOCH_fastk',
+       'STOCH_fastd'],
+      dtype='object')
+2023-09-27 14:06:01,675 - INFO - DataFrame size after dropping NaNs: 0
+2023-09-27 14:06:01,675 - INFO - Indicators calculated.
+2023-09-27 14:06:01,921 - ERROR - An error occurred in trading_loop: index -1 is out of bounds for axis 0 with size 0
+2023-09-27 14:06:02,583 - INFO - Running TradeBot...
+2023-09-27 14:06:02,583 - INFO - Fetching data...
+2023-09-27 14:06:03,431 - INFO - DataFrame head:     Price  Volume     Timestamp Buy/Sell Market/Limit Misc  TradeID
+0  122.00  0.1000  1.381095e+09        s            l             1
+1  123.61  0.1000  1.381179e+09        s            l             2
+2  123.91  1.0000  1.381201e+09        s            l             3
+3  123.90  0.9916  1.381201e+09        s            l             4
+4  124.19  1.0000  1.381210e+09        s            l             5
+2023-09-27 14:06:03,431 - INFO - DataFrame columns: Index(['Price', 'Volume', 'Timestamp', 'Buy/Sell', 'Market/Limit', 'Misc',
+       'TradeID'],
+      dtype='object')
+2023-09-27 14:06:03,432 - INFO - First Timestamp: 2013-10-06 21:34:16.090794752, Last Timestamp: 2013-11-04 16:19:02.793000192, Duration: 28 days 18:44:46.702205440
+2023-09-27 14:06:03,435 - INFO - Standard Deviation of Price: 2.722168352144585
+2023-09-27 14:06:03,435 - INFO - Average Trade Volume: 0.5708040704799999
+2023-09-27 14:06:03,435 - INFO - Selected Bucket Size: 15T
+2023-09-27 14:06:03,435 - INFO - Calculating indicators...
+2023-09-27 14:06:03,444 - INFO - DataFrame head:                      Price                      Volume
+                      open   high    low  close Volume
+Timestamp                                             
+2013-10-06 21:30:00  122.0  122.0  122.0  122.0    0.1
+2013-10-06 21:45:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:00:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:15:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:30:00    NaN    NaN    NaN    NaN    0.0
+2023-09-27 14:06:03,444 - INFO - DataFrame columns: MultiIndex([( 'Price',   'open'),
+            ( 'Price',   'high'),
+            ( 'Price',    'low'),
+            ( 'Price',  'close'),
+            ('Volume', 'Volume')],
+           )
+2023-09-27 14:06:03,449 - INFO - DataFrame head: Empty DataFrame
+Columns: [open_Price, high_Price, low_Price, close_Price, Volume_Volume, BBAND_middle, BBAND_upper, BBAND_lower, RSI, STOCH_fastk, STOCH_fastd]
+Index: []
+2023-09-27 14:06:03,449 - INFO - DataFrame columns: Index(['open_Price', 'high_Price', 'low_Price', 'close_Price', 'Volume_Volume',
+       'BBAND_middle', 'BBAND_upper', 'BBAND_lower', 'RSI', 'STOCH_fastk',
+       'STOCH_fastd'],
+      dtype='object')
+2023-09-27 14:06:03,449 - INFO - DataFrame size after dropping NaNs: 0
+2023-09-27 14:06:03,450 - INFO - Indicators calculated.
+2023-09-27 14:06:03,605 - ERROR - An error occurred in trading_loop: index -1 is out of bounds for axis 0 with size 0
+2023-09-27 14:06:04,586 - INFO - Running TradeBot...
+2023-09-27 14:06:04,586 - INFO - Fetching data...
+2023-09-27 14:06:05,674 - INFO - DataFrame head:     Price  Volume     Timestamp Buy/Sell Market/Limit Misc  TradeID
+0  122.00  0.1000  1.381095e+09        s            l             1
+1  123.61  0.1000  1.381179e+09        s            l             2
+2  123.91  1.0000  1.381201e+09        s            l             3
+3  123.90  0.9916  1.381201e+09        s            l             4
+4  124.19  1.0000  1.381210e+09        s            l             5
+2023-09-27 14:06:05,674 - INFO - DataFrame columns: Index(['Price', 'Volume', 'Timestamp', 'Buy/Sell', 'Market/Limit', 'Misc',
+       'TradeID'],
+      dtype='object')
+2023-09-27 14:06:05,676 - INFO - First Timestamp: 2013-10-06 21:34:16.090794752, Last Timestamp: 2013-11-04 16:19:02.793000192, Duration: 28 days 18:44:46.702205440
+2023-09-27 14:06:05,679 - INFO - Standard Deviation of Price: 2.722168352144585
+2023-09-27 14:06:05,679 - INFO - Average Trade Volume: 0.5708040704799999
+2023-09-27 14:06:05,679 - INFO - Selected Bucket Size: 15T
+2023-09-27 14:06:05,679 - INFO - Calculating indicators...
+2023-09-27 14:06:05,692 - INFO - DataFrame head:                      Price                      Volume
+                      open   high    low  close Volume
+Timestamp                                             
+2013-10-06 21:30:00  122.0  122.0  122.0  122.0    0.1
+2013-10-06 21:45:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:00:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:15:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:30:00    NaN    NaN    NaN    NaN    0.0
+2023-09-27 14:06:05,692 - INFO - DataFrame columns: MultiIndex([( 'Price',   'open'),
+            ( 'Price',   'high'),
+            ( 'Price',    'low'),
+            ( 'Price',  'close'),
+            ('Volume', 'Volume')],
+           )
+2023-09-27 14:06:05,701 - INFO - DataFrame head: Empty DataFrame
+Columns: [open_Price, high_Price, low_Price, close_Price, Volume_Volume, BBAND_middle, BBAND_upper, BBAND_lower, RSI, STOCH_fastk, STOCH_fastd]
+Index: []
+2023-09-27 14:06:05,701 - INFO - DataFrame columns: Index(['open_Price', 'high_Price', 'low_Price', 'close_Price', 'Volume_Volume',
+       'BBAND_middle', 'BBAND_upper', 'BBAND_lower', 'RSI', 'STOCH_fastk',
+       'STOCH_fastd'],
+      dtype='object')
+2023-09-27 14:06:05,701 - INFO - DataFrame size after dropping NaNs: 0
+2023-09-27 14:06:05,701 - INFO - Indicators calculated.
+2023-09-27 14:06:05,901 - ERROR - An error occurred in trading_loop: index -1 is out of bounds for axis 0 with size 0
+2023-09-27 14:06:06,582 - INFO - Running TradeBot...
+2023-09-27 14:06:06,582 - INFO - Fetching data...
+2023-09-27 14:06:07,442 - INFO - DataFrame head:     Price  Volume     Timestamp Buy/Sell Market/Limit Misc  TradeID
+0  122.00  0.1000  1.381095e+09        s            l             1
+1  123.61  0.1000  1.381179e+09        s            l             2
+2  123.91  1.0000  1.381201e+09        s            l             3
+3  123.90  0.9916  1.381201e+09        s            l             4
+4  124.19  1.0000  1.381210e+09        s            l             5
+2023-09-27 14:06:07,442 - INFO - DataFrame columns: Index(['Price', 'Volume', 'Timestamp', 'Buy/Sell', 'Market/Limit', 'Misc',
+       'TradeID'],
+      dtype='object')
+2023-09-27 14:06:07,444 - INFO - First Timestamp: 2013-10-06 21:34:16.090794752, Last Timestamp: 2013-11-04 16:19:02.793000192, Duration: 28 days 18:44:46.702205440
+2023-09-27 14:06:07,447 - INFO - Standard Deviation of Price: 2.722168352144585
+2023-09-27 14:06:07,447 - INFO - Average Trade Volume: 0.5708040704799999
+2023-09-27 14:06:07,447 - INFO - Selected Bucket Size: 15T
+2023-09-27 14:06:07,447 - INFO - Calculating indicators...
+2023-09-27 14:06:07,458 - INFO - DataFrame head:                      Price                      Volume
+                      open   high    low  close Volume
+Timestamp                                             
+2013-10-06 21:30:00  122.0  122.0  122.0  122.0    0.1
+2013-10-06 21:45:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:00:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:15:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:30:00    NaN    NaN    NaN    NaN    0.0
+2023-09-27 14:06:07,459 - INFO - DataFrame columns: MultiIndex([( 'Price',   'open'),
+            ( 'Price',   'high'),
+            ( 'Price',    'low'),
+            ( 'Price',  'close'),
+            ('Volume', 'Volume')],
+           )
+2023-09-27 14:06:07,465 - INFO - DataFrame head: Empty DataFrame
+Columns: [open_Price, high_Price, low_Price, close_Price, Volume_Volume, BBAND_middle, BBAND_upper, BBAND_lower, RSI, STOCH_fastk, STOCH_fastd]
+Index: []
+2023-09-27 14:06:07,465 - INFO - DataFrame columns: Index(['open_Price', 'high_Price', 'low_Price', 'close_Price', 'Volume_Volume',
+       'BBAND_middle', 'BBAND_upper', 'BBAND_lower', 'RSI', 'STOCH_fastk',
+       'STOCH_fastd'],
+      dtype='object')
+2023-09-27 14:06:07,465 - INFO - DataFrame size after dropping NaNs: 0
+2023-09-27 14:06:07,465 - INFO - Indicators calculated.
+2023-09-27 14:06:07,630 - ERROR - An error occurred in trading_loop: index -1 is out of bounds for axis 0 with size 0
+2023-09-27 14:06:08,577 - INFO - Running TradeBot...
+2023-09-27 14:06:08,577 - INFO - Fetching data...
+2023-09-27 14:06:09,531 - INFO - DataFrame head:     Price  Volume     Timestamp Buy/Sell Market/Limit Misc  TradeID
+0  122.00  0.1000  1.381095e+09        s            l             1
+1  123.61  0.1000  1.381179e+09        s            l             2
+2  123.91  1.0000  1.381201e+09        s            l             3
+3  123.90  0.9916  1.381201e+09        s            l             4
+4  124.19  1.0000  1.381210e+09        s            l             5
+2023-09-27 14:06:09,532 - INFO - DataFrame columns: Index(['Price', 'Volume', 'Timestamp', 'Buy/Sell', 'Market/Limit', 'Misc',
+       'TradeID'],
+      dtype='object')
+2023-09-27 14:06:09,533 - INFO - First Timestamp: 2013-10-06 21:34:16.090794752, Last Timestamp: 2013-11-04 16:19:02.793000192, Duration: 28 days 18:44:46.702205440
+2023-09-27 14:06:09,536 - INFO - Standard Deviation of Price: 2.722168352144585
+2023-09-27 14:06:09,536 - INFO - Average Trade Volume: 0.5708040704799999
+2023-09-27 14:06:09,536 - INFO - Selected Bucket Size: 15T
+2023-09-27 14:06:09,536 - INFO - Calculating indicators...
+2023-09-27 14:06:09,546 - INFO - DataFrame head:                      Price                      Volume
+                      open   high    low  close Volume
+Timestamp                                             
+2013-10-06 21:30:00  122.0  122.0  122.0  122.0    0.1
+2013-10-06 21:45:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:00:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:15:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:30:00    NaN    NaN    NaN    NaN    0.0
+2023-09-27 14:06:09,546 - INFO - DataFrame columns: MultiIndex([( 'Price',   'open'),
+            ( 'Price',   'high'),
+            ( 'Price',    'low'),
+            ( 'Price',  'close'),
+            ('Volume', 'Volume')],
+           )
+2023-09-27 14:06:09,552 - INFO - DataFrame head: Empty DataFrame
+Columns: [open_Price, high_Price, low_Price, close_Price, Volume_Volume, BBAND_middle, BBAND_upper, BBAND_lower, RSI, STOCH_fastk, STOCH_fastd]
+Index: []
+2023-09-27 14:06:09,552 - INFO - DataFrame columns: Index(['open_Price', 'high_Price', 'low_Price', 'close_Price', 'Volume_Volume',
+       'BBAND_middle', 'BBAND_upper', 'BBAND_lower', 'RSI', 'STOCH_fastk',
+       'STOCH_fastd'],
+      dtype='object')
+2023-09-27 14:06:09,552 - INFO - DataFrame size after dropping NaNs: 0
+2023-09-27 14:06:09,553 - INFO - Indicators calculated.
+2023-09-27 14:06:09,730 - ERROR - An error occurred in trading_loop: index -1 is out of bounds for axis 0 with size 0
+2023-09-27 14:06:10,584 - INFO - Running TradeBot...
+2023-09-27 14:06:10,584 - INFO - Fetching data...
+2023-09-27 14:06:11,549 - INFO - DataFrame head:     Price  Volume     Timestamp Buy/Sell Market/Limit Misc  TradeID
+0  122.00  0.1000  1.381095e+09        s            l             1
+1  123.61  0.1000  1.381179e+09        s            l             2
+2  123.91  1.0000  1.381201e+09        s            l             3
+3  123.90  0.9916  1.381201e+09        s            l             4
+4  124.19  1.0000  1.381210e+09        s            l             5
+2023-09-27 14:06:11,549 - INFO - DataFrame columns: Index(['Price', 'Volume', 'Timestamp', 'Buy/Sell', 'Market/Limit', 'Misc',
+       'TradeID'],
+      dtype='object')
+2023-09-27 14:06:11,550 - INFO - First Timestamp: 2013-10-06 21:34:16.090794752, Last Timestamp: 2013-11-04 16:19:02.793000192, Duration: 28 days 18:44:46.702205440
+2023-09-27 14:06:11,553 - INFO - Standard Deviation of Price: 2.722168352144585
+2023-09-27 14:06:11,553 - INFO - Average Trade Volume: 0.5708040704799999
+2023-09-27 14:06:11,553 - INFO - Selected Bucket Size: 15T
+2023-09-27 14:06:11,553 - INFO - Calculating indicators...
+2023-09-27 14:06:11,564 - INFO - DataFrame head:                      Price                      Volume
+                      open   high    low  close Volume
+Timestamp                                             
+2013-10-06 21:30:00  122.0  122.0  122.0  122.0    0.1
+2013-10-06 21:45:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:00:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:15:00    NaN    NaN    NaN    NaN    0.0
+2013-10-06 22:30:00    NaN    NaN    NaN    NaN    0.0
+2023-09-27 14:06:11,565 - INFO - DataFrame columns: MultiIndex([( 'Price',   'open'),
+            ( 'Price',   'high'),
+            ( 'Price',    'low'),
+            ( 'Price',  'close'),
+            ('Volume', 'Volume')],
+           )
+2023-09-27 14:06:11,571 - INFO - DataFrame head: Empty DataFrame
+Columns: [open_Price, high_Price, low_Price, close_Price, Volume_Volume, BBAND_middle, BBAND_upper, BBAND_lower, RSI, STOCH_fastk, STOCH_fastd]
+Index: []
+2023-09-27 14:06:11,571 - INFO - DataFrame columns: Index(['open_Price', 'high_Price', 'low_Price', 'close_Price', 'Volume_Volume',
+       'BBAND_middle', 'BBAND_upper', 'BBAND_lower', 'RSI', 'STOCH_fastk',
+       'STOCH_fastd'],
+      dtype='object')
+2023-09-27 14:06:11,571 - INFO - DataFrame size after dropping NaNs: 0
+2023-09-27 14:06:11,571 - INFO - Indicators calculated.
+2023-09-27 14:06:11,781 - ERROR - An error occurred in trading_loop: index -1 is out of bounds for axis 0 with size 0

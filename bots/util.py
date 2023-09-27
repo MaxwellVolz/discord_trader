@@ -2,7 +2,7 @@
 
 
 def calculate_bollinger_bands(df_resampled):
-    close = df_resampled["Price_close"]
+    close = df_resampled["close_Price"]
     sma = close.rolling(window=20).mean()
     rolling_std = close.rolling(window=20).std()
     df_resampled["BBAND_middle"] = sma
@@ -12,7 +12,7 @@ def calculate_bollinger_bands(df_resampled):
 
 
 def calculate_RSI(df_resampled):
-    close = df_resampled["Price_close"]
+    close = df_resampled["close_Price"]
     delta = close.diff()
     gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
     loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
@@ -22,9 +22,9 @@ def calculate_RSI(df_resampled):
 
 
 def calculate_stochastic(df_resampled):
-    close = df_resampled["Price_close"]
-    low_min = df_resampled["Price_low"].rolling(window=14).min()
-    high_max = df_resampled["Price_high"].rolling(window=14).max()
+    close = df_resampled["close_Price"]
+    low_min = df_resampled["low_Price"].rolling(window=14).min()
+    high_max = df_resampled["high_Price"].rolling(window=14).max()
 
     fast_k = 100 * ((close - low_min) / (high_max - low_min))
     fast_d = fast_k.rolling(window=3).mean()

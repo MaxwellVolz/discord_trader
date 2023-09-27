@@ -6,8 +6,9 @@ import requests
 import pandas as pd
 import numpy as np
 import json
-
 import logging
+from plot_candlestick_with_bollinger import plot_and_save_candlestick
+
 
 logging.basicConfig(
     filename="trade_bot.log",
@@ -18,46 +19,18 @@ logging.basicConfig(
 
 from util import calculate_bollinger_bands, calculate_RSI, calculate_stochastic
 
-# from KrakenDataPlotter import KrakenDataPlotter
+print("hey")
 
 
-class KrakenTradeBot:
-    def __init__(self, initial_time_since, ctx):
+class TradeBot:
+    def __init__(self, ctx):
+        logging.info("Initializing TradeBot...")
         self.ctx = ctx
-        self.df = None
-        self.time_since = initial_time_since
-        self.trade_end_time = datetime.now() + timedelta(hours=1)
         self.trade_initialized = False
-        self.df_resampled = None
-
-    def fetch_and_append_data(self):
-        if self.df is not None and "Timestamp" in self.df.columns:
-            last_timestamp = self.df["Timestamp"].max()
-        else:
-            last_timestamp = (
-                self.time_since
-            )  # This value will be used if `self.df` is None or if "Timestamp" is not in columns
-
-        kraken_url = (
-            f"https://api.kraken.com/0/public/Trades?pair=btcusd&since={last_timestamp}"
-        )
-
-        # Fetch new trades
-
-        try:
-            response = requests.get(kraken_url)
-            new_data = response.json()["result"]["XXBTZUSD"]
-            # logging.info(
-            #     f"Fetched new data from Kraken: \n{json.dumps(new_data[:5], indent=4)}"
-            # )
-            logging.info(f"DataFrame before resampling: \n{self.df.head()}")
-            logging.info(f"DataFrame dtypes: \n{self.df.dtypes}")
-        except Exception as e:
-            logging.error(f"An error occurred: {e}")
-
-        # Create DataFrame for new trades
-        new_df = pd.DataFrame(
-            new_data,
+        self.entry_price = None
+        self.last_timestamp = 0
+        self.position_open = False
+        self.df = pd.DataFrame(
             columns=[
                 "Price",
                 "Volume",
@@ -67,196 +40,225 @@ class KrakenTradeBot:
                 "Misc",
                 "TradeID",
             ],
+            dtype=object,
         )
 
-        # Cast columns to appropriate data types
-        numeric_cols = ["Price", "Volume", "Timestamp", "TradeID"]
-        new_df[numeric_cols] = new_df[numeric_cols].apply(
-            pd.to_numeric, errors="coerce"
-        )
+        # Explicitly set numeric dtypes for specific columns
+        self.df["Price"] = self.df["Price"].astype(float)
+        self.df["Volume"] = self.df["Volume"].astype(float)
+        self.df["Timestamp"] = self.df["Timestamp"].astype(float)
 
-        # Append new data to existing DataFrame
-        self.df = (
-            pd.concat([self.df, new_df]).reset_index(drop=True)
-            if self.df is not None
-            else new_df
-        )
-
-        # Log the DataFrame head to verify
-        logging.info(f"Appended DataFrame: \n{self.df.head()}")
-        logging.info(f"DataFrame dtypes after casting: \n{self.df.dtypes}")
-
-    def consolidate_data(self):
-        # Ensure data and Timestamp exist
-        if self.df is None or "Timestamp" not in self.df.columns:
-            return
-
-        # Check if DataFrame is empty
-        if self.df.empty:
-            print("DataFrame is empty. Skipping resampling.")
-            return
-
-        # Check if DataFrame has numeric columns
-        if not any(self.df.dtypes.apply(np.issubdtype, args=(np.number,))):
-            print("No numeric columns to aggregate in DataFrame.")
-            return
-
-        # Convert the Timestamp to a DateTimeIndex
-        self.df["Timestamp"] = pd.to_datetime(self.df["Timestamp"], unit="s")
-        self.df.set_index("Timestamp", inplace=True)
-
-        # Use resample to create OHLC candles
-        ohlc_dict = {
-            "Price": "ohlc",
-            "Volume": "sum",
-        }
+    def fetch_data(self):
+        logging.info("Fetching data...")
+        kraken_url = f"https://api.kraken.com/0/public/Trades?pair=btcusd&since={self.last_timestamp}"
 
         try:
-            self.df_resampled = self.df.resample("1S").apply(ohlc_dict).dropna()
+            response = requests.get(kraken_url)
+            new_data = response.json()["result"]["XXBTZUSD"]
 
-            # Flatten the MultiIndex for ease of use
-            self.df_resampled.columns = [
-                "_".join(tup).rstrip("_") for tup in self.df_resampled.columns.values
-            ]
+            # Creating a DataFrame from the new data
+            new_df = pd.DataFrame(
+                new_data,
+                columns=[
+                    "Price",
+                    "Volume",
+                    "Timestamp",
+                    "Buy/Sell",
+                    "Market/Limit",
+                    "Misc",
+                    "TradeID",
+                ],
+            )
+
+            # Convert the necessary columns to numeric types
+            for col in ["Price", "Volume", "Timestamp"]:
+                new_df[col] = pd.to_numeric(new_df[col], errors="coerce")
+
+            # Concatenate the new data to the existing DataFrame
+            if not self.df.empty and not new_df.empty:
+                self.df = pd.concat([self.df, new_df], sort=False).reset_index(
+                    drop=True
+                )
+            elif not new_df.empty:
+                self.df = new_df
+
+            logging.info(f"DataFrame head: {self.df.head()}")
+            logging.info(f"DataFrame columns: {self.df.columns}")
+
+            # Convert UNIX 'Timestamp' to datetime
+            self.df["Timestamp"] = pd.to_datetime(self.df["Timestamp"], unit="s")
+
+            # Set 'Timestamp' as the index
+            self.df.set_index("Timestamp", inplace=True)
+
+            # Log the first and last timestamps, and duration
+            first_ts = self.df.index.min()
+            last_ts = self.df.index.max()
+            duration = last_ts - first_ts
+            logging.info(
+                f"First Timestamp: {first_ts}, Last Timestamp: {last_ts}, Duration: {duration}"
+            )
+
         except Exception as e:
-            print(f"An error occurred during resampling: {e}")
+            logging.error(f"An error occurred: {e}")
+
+    def determine_best_bucket_size(self, df):
+        # Calculate standard deviation of price changes
+        df["Price_Change"] = df["Price"].diff()
+        std_dev_price = np.std(df["Price_Change"].dropna())
+
+        # Calculate average trade volume
+        avg_volume = np.mean(df["Volume"])
+
+        # Dynamically set bucket size based on calculated metrics
+        if std_dev_price > 20:  # or any other threshold
+            bucket_size = "1T"  # 1 minute
+        elif std_dev_price > 10:  # or any other threshold
+            bucket_size = "5T"  # 5 minutes
+        else:
+            bucket_size = "15T"  # 15 minutes
+
+        logging.info(f"Standard Deviation of Price: {std_dev_price}")
+        logging.info(f"Average Trade Volume: {avg_volume}")
+        logging.info(f"Selected Bucket Size: {bucket_size}")
+
+        return bucket_size
 
     def calculate_indicators(self):
-        # Bollinger Bands: The upper, middle (SMA), and lower Bollinger
-        # Bands are calculated for the 'Close' prices with a 20-period
-        # window. We store these in the DataFrame under the respective column
-        # names.
-        self.df_resampled = calculate_bollinger_bands(self.df_resampled)
+        best_bucket_size = self.determine_best_bucket_size(self.df)
 
-        # RSI (Relative Strength Index): The RSI is calculated for the 'Close'
-        # prices over a 14-period window
-        # and stored in the DataFrame.
-        self.df_resampled = calculate_RSI(self.df_resampled)
+        logging.info("Calculating indicators...")
 
-        # Stochastic Oscillator: The fast %K and %D lines are calculated using
-        # the high, low, and close prices.
-        self.df_resampled = calculate_stochastic(self.df_resampled)
+        # Use the dynamically determined bucket size
+        df_resampled = self.df.resample(best_bucket_size).agg(
+            {
+                "Price": "ohlc",
+                "Volume": "sum",
+            }
+        )
+
+        logging.info(f"DataFrame head: {df_resampled.head()}")
+        logging.info(f"DataFrame columns: {df_resampled.columns}")
+
+        df_resampled.columns = [f"{y}_{x}" for x, y in df_resampled.columns]
+
+        df_resampled = calculate_bollinger_bands(df_resampled)
+        df_resampled = calculate_RSI(df_resampled)
+        df_resampled = calculate_stochastic(df_resampled)
+
+        # Drop NaN values
+        df_resampled.dropna(inplace=True)
+
+        self.df = df_resampled
+
+        logging.info(f"DataFrame head: {self.df.head()}")
+        logging.info(f"DataFrame columns: {self.df.columns}")
+
+        logging.info(f"DataFrame size after dropping NaNs: {len(self.df)}")
+
+        logging.info("Indicators calculated.")
 
     def evaluate_entry_conditions(self):
-        last_row = self.df_resampled.iloc[-1]
-        second_last_row = self.df_resampled.iloc[-2]
-        entry_conditions_met = False
-        reason = ""
+        logging.info("Evaluating entry conditions...")
+
+        if len(self.df) < 2:
+            logging.info("Not enough data to evaluate entry conditions.")
+            return False, "Not enough data"
+
+        last_row = self.df.iloc[-1]
+        reason = "Conditions not met"
+
+        # Log the specific indicators you're evaluating
+        logging.info(f"Evaluating for Timestamp: {last_row.name}")
+        logging.info(f"BBAND_lower: {last_row['BBAND_lower']}")
+        logging.info(f"close_Price: {last_row['close_Price']}")
+        logging.info(f"RSI: {last_row['RSI']}")
+        logging.info(f"STOCH_fastk: {last_row['STOCH_fastk']}")
+        logging.info(f"STOCH_fastd: {last_row['STOCH_fastd']}")
+
+        # Check if the conditions for entry are met
+        if (
+            last_row["BBAND_lower"] >= last_row["close_Price"]
+            and last_row["RSI"] < 20
+            and last_row["STOCH_fastk"] < 20
+            and last_row["STOCH_fastd"] < 20
+        ):
+            # Check the next candle
+            next_row = self.df.iloc[
+                -2
+            ]  # Assuming the data is sorted in ascending order by time
+            if (
+                next_row["close_Price"] > next_row["BBAND_lower"]
+                and next_row["RSI"] > 20
+                and 20 <= next_row["STOCH_fastk"] <= 40
+                and 20 <= next_row["STOCH_fastd"] <= 40
+            ):
+                logging.info("Entry conditions met.")
+                self.entry_price = last_row["close_Price"]
+                reason = "Entry conditions met"
+                return True, reason
+
+        return False, reason
+
+    def evaluate_exit_conditions(self):
+        logging.info("Evaluating exit conditions...")
+        last_row = self.df.iloc[-1]
+        reason = "Conditions not met"
+
+        if self.entry_price is None:
+            reason = "Exit conditions can't be evaluated before an entry."
+            return False, reason
+
+        stop_loss = last_row["BBAND_middle"]
+        take_profit = self.entry_price * 2 - stop_loss
 
         if (
-            last_row["Price_close"] <= last_row["BBAND_lower"]
-            and last_row["RSI"] < 20
-            and (last_row["STOCH_fastk"] < 20 and last_row["STOCH_fastd"] < 20)
+            last_row["close_Price"] <= stop_loss
+            or last_row["close_Price"] >= take_profit
         ):
-            if (
-                second_last_row["Price_close"] < second_last_row["BBAND_lower"]
-                and last_row["Price_close"] > last_row["BBAND_lower"]
-                and last_row["RSI"] > 20
-                and (
-                    20 < last_row["STOCH_fastk"] < 40
-                    and 20 < last_row["STOCH_fastd"] < 40
-                )
-            ):
-                entry_conditions_met = True
-                reason = (
-                    f"Entry conditions met.\n"
-                    f"RSI: {last_row['RSI']}\n"
-                    f"Stochastic: {last_row['STOCH_fastk']}\n"
-                    f"Band crossed: BBAND_lower"
-                )
+            logging.info("Exit conditions met.")
+            reason = "Exit conditions met"
+            return True, reason
+        return False, reason
 
-        return entry_conditions_met, reason
+    def place_order(self, entry_exit, price, profit_or_loss=None):
+        logging.info(f"Placing {entry_exit} order at {price}.")
+        # Place your order here
+        return
 
-    def evaluate_exit_conditions(self, entry_price):
-        if entry_price is None:
-            return
+    async def save_and_post_plot(self):
+        # Generate the plot and save it to a file
+        file_path = "path/to/save/plot.png"
+        plot_and_save_candlestick(self.df, file_path)
 
-        # Assuming self.df_resampled contains the indicators and close price
-        last_row = self.df_resampled.iloc[-1]
-
-        # Initialize exit condition variables
-        exit_conditions_met = False
-        exit_type = ""
-        exit_price = 0.0
-        profit_or_loss = ""
-
-        # Calculate the yellow band (as it wasn't in your original
-        # requirements, assuming it's a simple average)
-        bb_yellow = (last_row["BBAND_upper"] + last_row["BBAND_lower"]) / 2
-
-        # Stop Loss at Yellow Band
-        if last_row["Price_close"] <= bb_yellow:
-            exit_conditions_met = True
-            exit_type = "Stop Loss"
-            exit_price = bb_yellow
-            profit_or_loss = "loss" if exit_price < entry_price else "profit"
-
-        # Take Profit (For a one-to-one risk-reward ratio)
-        take_profit = entry_price + (
-            entry_price - bb_yellow
-        )  # One-to-one risk-reward ratio
-        if last_row["Price_close"] >= take_profit:
-            exit_conditions_met = True
-            exit_type = "Take Profit"
-            exit_price = take_profit
-            profit_or_loss = "profit"
-
-        return exit_conditions_met, exit_type, exit_price, profit_or_loss
-
-    async def place_order(self, ctx, entry_exit, price, profit_or_loss=None):
-        if entry_exit == "entry":
-            msg = await self.ctx.send(
-                f"Looking for trade...\nFound an entry at {price}."
-                "Placing a buy order..."
-            )
-            # Simulate placing a buy order here
-            await msg.edit(content=f"Buy order placed at {price}.")
-
-        elif entry_exit == "exit":
-            msg = await self.ctx.send(
-                f"Exiting position at {price} for a {profit_or_loss}. "
-                "Placing a sell order..."
-            )
-            # Simulate placing a sell order here
-            await msg.edit(
-                content=f"Exited position at {price} for a {profit_or_loss}."
-            )
-
-        else:
-            await self.ctx.send("Invalid order type.")
+        # Post the plot to Discord
+        with open(file_path, "rb") as f:
+            picture = File(f)
+            await self.ctx.send("Here is the plot:", file=picture)
 
     async def run(self):
-        entry_price = None  # Initialize to None as you've done
-
-        if not self.trade_initialized or datetime.now() >= self.trade_end_time:
+        logging.info("Running TradeBot...")
+        if not self.trade_initialized:
+            logging.info("Trade not initialized. Exiting run.")
             return
 
-        self.fetch_and_append_data()
-        self.consolidate_data()
-
-        if self.df_resampled is None:
-            return
-
+        self.fetch_data()
         self.calculate_indicators()
+        await self.save_and_post_plot()  # Add this line to post the plot
 
         entry_met, entry_reason = self.evaluate_entry_conditions()
-
         if entry_met:
-            entry_price = self.df_resampled.iloc[-1]["Price_close"]
-            await self.place_order(self.ctx, "entry", entry_price)
+            logging.info(f"Entry Reason: {entry_reason}")
+            self.entry_price = 0.0  # Replace with actual entry price
+            await self.place_order("entry", self.entry_price)
+            self.position_open = True
 
-        if entry_price is not None:
-            (
-                exit_met,
-                exit_type,
-                exit_price,
-                profit_or_loss,
-            ) = self.evaluate_exit_conditions(entry_price)
+        if self.position_open:
+            exit_met, exit_reason = self.evaluate_exit_conditions()
+            logging.info(f"Exit Reason: {exit_reason}")
             if exit_met:
-                await self.place_order(self.ctx, "exit", exit_price, profit_or_loss)
-        else:
-            # Log or handle the case where entry_price remains None.
-            logging.info("entry_price is None.")
+                await self.place_order("exit", self.entry_price)
+                self.position_open = False
 
 
 intents = Intents.default()
@@ -271,37 +273,37 @@ bot = commands.Bot(
 trading_bot_instance = None
 
 
-@bot.event
-async def on_command_error(ctx, error):
-    print(error)
+@bot.command(aliases=["trade"])
+async def start(ctx):
+    global trading_bot_instance
+
+    trading_bot_instance = TradeBot(ctx)
+    trading_bot_instance.trade_initialized = True
+    await ctx.send("Initialized TradeBot.")
 
 
-@tasks.loop(seconds=5)
-async def trading_bot():
+@tasks.loop(seconds=2)
+async def trading_loop():
     global trading_bot_instance
     if trading_bot_instance:
-        await trading_bot_instance.run()
+        try:
+            await trading_bot_instance.run()
+        except Exception as e:
+            logging.error(f"An error occurred in trading_loop: {e}")
 
 
 @bot.event
 async def on_ready():
     print(f"We have logged in as {bot.user}")
+    trading_loop.start()
 
 
-@bot.command(aliases=["trade"])
-async def start(ctx):
-    global trading_bot_instance
-    trading_bot_instance = KrakenTradeBot("some_initial_time", ctx)
-    trading_bot_instance.trade_initialized = True
-    trading_bot.start()  # Starts the loop to run every 5 minutes
-    await ctx.send("Initialized KrakenTradeBot.")
-
-
-@bot.command(aliases=["stonks"])
-async def plot_kraken_data(ctx):
-    msg = await ctx.send("Generating plot...")
-    # ... (your plotting code)
-    await msg.edit(content="Plotted.")
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        logging.info(f"Command not found: {ctx.message.content}")
+    else:
+        logging.error(f"An error occurred: {str(error)}")
 
 
 bot.run(os.environ["DISCORD_TOKEN"])
