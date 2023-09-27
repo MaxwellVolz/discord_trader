@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "discord-crypto-trader"
+version = "0.1.0"
+description = ""
+authors = ["Maxwell Volz <maxwellvolz@gmail.com>"]
+readme = "README.md"
+packages = [{include = "discord_crypto_trader"}]
+
+[tool.poetry.dependencies]
+python = "3.11.5"
+matplotlib = "^3.8.0"
+pandas = "^2.1.1"
+discord-py = "^2.3.2"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
