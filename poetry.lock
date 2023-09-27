@@ -1063,20 +1063,6 @@ files = [
 ]
 
 [[package]]
-name = "ta-lib"
-version = "0.4.28"
-description = "Python wrapper for TA-Lib"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "TA-Lib-0.4.28.tar.gz", hash = "sha256:3f03847162e003e0d92a8a89d9e8b7192dfe1235507e2f7d1d0e66cd5af7a48e"},
-]
-
-[package.dependencies]
-numpy = "*"
-
-[[package]]
 name = "tzdata"
 version = "2023.3"
 description = "Provider of IANA time zone data"
@@ -1197,4 +1183,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.5"
-content-hash = "1eb26e103338224250491a88da3c0fc8e0ae1eb713e38a8404b50b8416eff2f8"
+content-hash = "3e2db0061ec05c93226b3c27c6b3e6cc634ef174c4accbc823b6cc5529cecd9c"

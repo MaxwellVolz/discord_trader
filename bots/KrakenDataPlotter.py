@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
-from util import calculate_bollinger_bands
+from old_util import calculate_bollinger_bands
 
 
 class KrakenDataPlotter:

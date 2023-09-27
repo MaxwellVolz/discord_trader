@@ -1,7 +1,7 @@
 from discord import Intents, File
 from discord.ext import commands
 from dotenv import load_dotenv
-from KrakenDataPlotter import KrakenDataPlotter  # Import your plotting class
+from KrakenDataPlotter import KrakenDataPlotter
 import os
 
 load_dotenv()
