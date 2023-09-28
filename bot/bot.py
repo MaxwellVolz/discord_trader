@@ -4,6 +4,8 @@ import requests
 import time
 import asyncio
 import os
+from bot.utils import calc_bollinger_bands, calc_RSI, calc_stochastic
+from bot.plot import candlestick_plot
 
 
 class TradeBot:
@@ -46,11 +48,30 @@ class TradeBot:
         samples_per_hour = len(raw_data) * 3600 / time_between.total_seconds()
 
         # Prepare 1-minute OHLC data
+        raw_data["Timestamp_copy"] = raw_data["Timestamp"]
         raw_data.index = pd.to_datetime(raw_data["Timestamp"], unit="s")
+        raw_data["Timestamp"] = raw_data["Timestamp_copy"]
+
         price_ohlc = raw_data["Price"].resample("1T").ohlc()
-        price_ohlc.columns = [
-            f"Price_{col}" for col in price_ohlc.columns
-        ]  # Flatten the columns
+        # price_ohlc.columns = [
+        #     f"Price_{col}" for col in price_ohlc.columns
+        # ]  # Flatten the columns
+
+        # print("Existing columns in DataFrame:")
+        # print(self.one_min_ohlc.columns.tolist())
+
+        price_ohlc.rename(
+            columns={
+                "open": "Open",
+                "high": "High",
+                "low": "Low",
+                "close": "Close",
+            },
+            inplace=True,
+        )
+
+        print(price_ohlc)
+
         volume_sum = raw_data["Volume"].resample("1T").sum()
         volume_sum.name = "Volume_sum"
 
@@ -89,44 +110,23 @@ class TradeBot:
                 [self.one_min_ohlc, new_one_min_ohlc]
             ).drop_duplicates()
 
-            # Calculate the Simple Moving Average (SMA) and Rolling Standard Deviation (Rolling_STD)
+            # calc the Simple Moving Average (SMA) and Rolling Standard Deviation (Rolling_STD)
             window_size = 20  # You can choose another window size
             self.one_min_ohlc["SMA"] = (
-                self.one_min_ohlc["Price_close"]
-                .rolling(window=window_size)
-                .mean()
-                .ffill()
+                self.one_min_ohlc["Close"].rolling(window=window_size).mean().ffill()
             )
             self.one_min_ohlc["Rolling_STD"] = (
-                self.one_min_ohlc["Price_close"]
-                .rolling(window=window_size)
-                .std()
-                .ffill()
+                self.one_min_ohlc["Close"].rolling(window=window_size).std().ffill()
             )
 
-            # Bollinger Bands for standard deviations 2, 3, 4
-            for std_dev in [2, 3, 4]:
-                upper_col = f"Bollinger_Upper_{std_dev}"
-                lower_col = f"Bollinger_Lower_{std_dev}"
-                self.one_min_ohlc[upper_col] = self.one_min_ohlc["SMA"] + (
-                    self.one_min_ohlc["Rolling_STD"] * std_dev
+            try:
+                self.one_min_ohlc = calc_bollinger_bands(self.one_min_ohlc)
+                self.one_min_ohlc = calc_RSI(self.one_min_ohlc)
+                self.one_min_ohlc = calc_stochastic(self.one_min_ohlc)
+            except Exception as e:
+                logging.error(
+                    f"An error occurred in one of the calculation functions: {e}"
                 )
-                self.one_min_ohlc[lower_col] = self.one_min_ohlc["SMA"] - (
-                    self.one_min_ohlc["Rolling_STD"] * std_dev
-                )
-
-            # RSI
-            delta = self.one_min_ohlc["Price_close"].diff()
-            gain = (delta.where(delta > 0, 0)).rolling(window=14).mean().ffill()
-            loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean().ffill()
-            self.one_min_ohlc["RSI"] = 100 - (100 / (1 + (gain / loss)))
-
-            # Stochastic
-            low_min = self.one_min_ohlc["Price_low"].rolling(window=14).min().ffill()
-            high_max = self.one_min_ohlc["Price_high"].rolling(window=14).max().ffill()
-            self.one_min_ohlc["Stochastic"] = (
-                (self.one_min_ohlc["Price_close"] - low_min) / (high_max - low_min)
-            ) * 100
 
             elapsed_time = time.time() - start_time
             if elapsed_time >= 20:
@@ -135,6 +135,13 @@ class TradeBot:
 
                 self.one_min_ohlc.to_csv("output/one_min_ohlc.csv")
                 logging.info("Saved one_min_ohlc to output/one_min_ohlc.csv.")
+
+                image_path_1, image_path_2 = candlestick_plot(
+                    self.one_min_ohlc
+                )  # Call your plotting function
+                await self.ctx.send(file=image_path_1)
+                await self.ctx.send(file=image_path_2)
+
                 start_time = time.time()
 
             await asyncio.sleep(2)

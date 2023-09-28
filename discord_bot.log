@@ -2493,3 +2493,1002 @@ Timestamp
 3  26450.0  0.019190  1.695861e+09        b            l       62978365
 4  26450.0  0.075614  1.695861e+09        b            l       62978366
 2023-09-27 17:52:33,689 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:00:35,395 - INFO - Starting the Discord bot...
+2023-09-27 18:00:35,396 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:00:35,399 - INFO - logging in using static token
+2023-09-27 18:00:37,454 - INFO - Shard ID None has connected to Gateway (Session ID: ee9f05d51e63834c84253cd08c675af3).
+2023-09-27 18:01:13,248 - INFO - Initializing TradeBot...
+2023-09-27 18:01:13,485 - INFO - Fetching initial data...
+2023-09-27 18:01:13,485 - INFO - Fetching data since 1695861073...
+2023-09-27 18:01:14,493 - INFO - Fetched 487 new data rows.
+2023-09-27 18:01:14,530 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    487.000000  487.000000  4.870000e+02  4.870000e+02
+mean   26447.559754    0.155967  1.695862e+09  6.297882e+07
+std       24.865187    0.570963  5.722316e+02  1.407291e+02
+min    26420.100000    0.000005  1.695861e+09  6.297858e+07
+25%    26422.300000    0.001000  1.695861e+09  6.297870e+07
+50%    26446.500000    0.004222  1.695862e+09  6.297882e+07
+75%    26453.500000    0.022944  1.695863e+09  6.297894e+07
+max    26515.300000    6.904000  1.695863e+09  6.297906e+07
+Start Time: 2023-09-28 00:31:16
+End Time: 2023-09-28 01:01:10
+Samples per Hour: 977.26
+One-Min OHLC:
+                     Price_open  Price_high  Price_low  Price_close  Volume_sum
+Timestamp                                                                      
+2023-09-28 00:31:00     26515.3     26515.3    26505.2      26505.3    0.812426
+2023-09-28 00:32:00     26505.2     26505.2    26481.8      26481.9    0.072655
+2023-09-28 00:33:00     26481.8     26481.8    26453.4      26453.5    6.539593
+2023-09-28 00:34:00     26453.5     26453.5    26453.4      26453.5    0.358213
+2023-09-28 00:35:00     26453.5     26453.5    26453.5      26453.5    0.057607
+2023-09-27 18:01:14,868 - INFO - Starting to poll for new data...
+2023-09-27 18:01:14,869 - INFO - Polling started.
+2023-09-27 18:01:14,869 - INFO - Fetching data since 1695861073...
+2023-09-27 18:01:16,068 - INFO - Fetched 487 new data rows.
+2023-09-27 18:01:16,077 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26515.3  0.000673  1.695861e+09        b            m       62978575
+1  26515.3  0.002921  1.695861e+09        b            m       62978576
+2  26515.2  0.000699  1.695861e+09        s            l       62978577
+3  26515.3  0.001709  1.695861e+09        b            l       62978578
+4  26515.2  0.049301  1.695861e+09        s            m       62978579
+2023-09-27 18:01:16,102 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:16,105 - ERROR - An error occurred in one of the calculation functions: 'Price_Close'
+2023-09-27 18:01:18,115 - INFO - Fetching data since 1695861073...
+2023-09-27 18:01:19,311 - INFO - Fetched 489 new data rows.
+2023-09-27 18:01:19,326 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26515.3  0.000673  1.695861e+09        b            m       62978575
+1  26515.3  0.002921  1.695861e+09        b            m       62978576
+2  26515.2  0.000699  1.695861e+09        s            l       62978577
+3  26515.3  0.001709  1.695861e+09        b            l       62978578
+4  26515.2  0.049301  1.695861e+09        s            m       62978579
+2023-09-27 18:01:19,350 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:19,353 - ERROR - An error occurred in one of the calculation functions: 'Price_Close'
+2023-09-27 18:01:21,355 - INFO - Fetching data since 1695861073...
+2023-09-27 18:01:22,332 - INFO - Fetched 490 new data rows.
+2023-09-27 18:01:22,352 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26515.3  0.000673  1.695861e+09        b            m       62978575
+1  26515.3  0.002921  1.695861e+09        b            m       62978576
+2  26515.2  0.000699  1.695861e+09        s            l       62978577
+3  26515.3  0.001709  1.695861e+09        b            l       62978578
+4  26515.2  0.049301  1.695861e+09        s            m       62978579
+2023-09-27 18:01:22,389 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:22,393 - ERROR - An error occurred in one of the calculation functions: 'Price_Close'
+2023-09-27 18:01:24,394 - INFO - Fetching data since 1695861073...
+2023-09-27 18:01:25,247 - INFO - Fetched 490 new data rows.
+2023-09-27 18:01:25,257 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26515.3  0.000673  1.695861e+09        b            m       62978575
+1  26515.3  0.002921  1.695861e+09        b            m       62978576
+2  26515.2  0.000699  1.695861e+09        s            l       62978577
+3  26515.3  0.001709  1.695861e+09        b            l       62978578
+4  26515.2  0.049301  1.695861e+09        s            m       62978579
+2023-09-27 18:01:25,280 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:25,283 - ERROR - An error occurred in one of the calculation functions: 'Price_Close'
+2023-09-27 18:01:27,291 - INFO - Fetching data since 1695861073...
+2023-09-27 18:01:28,165 - INFO - Fetched 490 new data rows.
+2023-09-27 18:01:28,173 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26515.3  0.000673  1.695861e+09        b            m       62978575
+1  26515.3  0.002921  1.695861e+09        b            m       62978576
+2  26515.2  0.000699  1.695861e+09        s            l       62978577
+3  26515.3  0.001709  1.695861e+09        b            l       62978578
+4  26515.2  0.049301  1.695861e+09        s            m       62978579
+2023-09-27 18:01:28,194 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:28,197 - ERROR - An error occurred in one of the calculation functions: 'Price_Close'
+2023-09-27 18:01:39,983 - INFO - Starting the Discord bot...
+2023-09-27 18:01:39,984 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:01:39,985 - INFO - logging in using static token
+2023-09-27 18:01:40,923 - INFO - Shard ID None has connected to Gateway (Session ID: d36e939f0399a8015e1b664963565a24).
+2023-09-27 18:01:49,091 - INFO - Initializing TradeBot...
+2023-09-27 18:01:49,287 - INFO - Fetching initial data...
+2023-09-27 18:01:49,287 - INFO - Fetching data since 1695861109...
+2023-09-27 18:01:50,167 - INFO - Fetched 475 new data rows.
+2023-09-27 18:01:50,198 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    475.000000  475.000000  4.750000e+02  4.750000e+02
+mean   26444.697684    0.158856  1.695862e+09  6.297883e+07
+std       21.510604    0.577799  5.656883e+02  1.372650e+02
+min    26420.100000    0.000005  1.695861e+09  6.297859e+07
+25%    26421.900000    0.001000  1.695861e+09  6.297871e+07
+50%    26446.400000    0.004222  1.695862e+09  6.297883e+07
+75%    26453.500000    0.020830  1.695863e+09  6.297895e+07
+max    26505.300000    6.904000  1.695863e+09  6.297907e+07
+Start Time: 2023-09-28 00:31:51
+End Time: 2023-09-28 01:01:33
+Samples per Hour: 959.60
+One-Min OHLC:
+                     Price_open  Price_high  Price_low  Price_close  Volume_sum
+Timestamp                                                                      
+2023-09-28 00:31:00     26505.3     26505.3    26505.2      26505.3    0.279952
+2023-09-28 00:32:00     26505.2     26505.2    26481.8      26481.9    0.072655
+2023-09-28 00:33:00     26481.8     26481.8    26453.4      26453.5    6.539593
+2023-09-28 00:34:00     26453.5     26453.5    26453.4      26453.5    0.358213
+2023-09-28 00:35:00     26453.5     26453.5    26453.5      26453.5    0.057607
+2023-09-27 18:01:50,470 - INFO - Starting to poll for new data...
+2023-09-27 18:01:50,470 - INFO - Polling started.
+2023-09-27 18:01:50,470 - INFO - Fetching data since 1695861109...
+2023-09-27 18:01:51,497 - INFO - Fetched 475 new data rows.
+2023-09-27 18:01:51,521 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:01:51,571 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:53,584 - INFO - Fetching data since 1695861109...
+2023-09-27 18:01:54,552 - INFO - Fetched 475 new data rows.
+2023-09-27 18:01:54,561 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:01:54,585 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:56,617 - INFO - Fetching data since 1695861109...
+2023-09-27 18:01:57,583 - INFO - Fetched 475 new data rows.
+2023-09-27 18:01:57,602 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:01:57,640 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:01:59,666 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:00,722 - INFO - Fetched 475 new data rows.
+2023-09-27 18:02:00,732 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:00,757 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:02,772 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:03,916 - INFO - Fetched 480 new data rows.
+2023-09-27 18:02:03,934 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:03,980 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:06,009 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:07,261 - INFO - Fetched 481 new data rows.
+2023-09-27 18:02:07,271 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:07,296 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:09,319 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:10,374 - INFO - Fetched 481 new data rows.
+2023-09-27 18:02:10,384 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:10,417 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:12,429 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:13,503 - INFO - Fetched 485 new data rows.
+2023-09-27 18:02:13,513 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:13,538 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:13,564 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:02:15,564 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:16,650 - INFO - Fetched 485 new data rows.
+2023-09-27 18:02:16,665 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:16,704 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:18,721 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:19,743 - INFO - Fetched 485 new data rows.
+2023-09-27 18:02:19,762 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:19,807 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:21,834 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:22,891 - INFO - Fetched 485 new data rows.
+2023-09-27 18:02:22,909 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:22,954 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:02:24,978 - INFO - Fetching data since 1695861109...
+2023-09-27 18:02:26,054 - INFO - Fetched 486 new data rows.
+2023-09-27 18:02:26,068 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26505.3  0.000822  1.695861e+09        b            m       62978593
+1  26505.2  0.010600  1.695861e+09        s            l       62978594
+2  26505.3  0.000500  1.695861e+09        b            m       62978595
+3  26505.2  0.255000  1.695861e+09        s            l       62978596
+4  26505.3  0.001200  1.695861e+09        b            m       62978597
+2023-09-27 18:02:26,099 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:08:45,334 - INFO - Starting the Discord bot...
+2023-09-27 18:08:45,335 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:08:45,336 - INFO - logging in using static token
+2023-09-27 18:08:46,172 - INFO - Shard ID None has connected to Gateway (Session ID: 296bd2ee449854daa078d3087d74dabe).
+2023-09-27 18:08:46,773 - INFO - Initializing TradeBot...
+2023-09-27 18:08:47,079 - INFO - Fetching initial data...
+2023-09-27 18:08:47,080 - INFO - Fetching data since 1695861526...
+2023-09-27 18:08:48,324 - INFO - Fetched 428 new data rows.
+2023-09-27 18:08:48,378 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    428.000000  428.000000  4.280000e+02  4.280000e+02
+mean   26426.979673    0.203409  1.695863e+09  6.297896e+07
+std       23.932330    0.829769  5.126595e+02  1.236972e+02
+min    26381.400000    0.000100  1.695862e+09  6.297875e+07
+25%    26420.100000    0.001000  1.695862e+09  6.297886e+07
+50%    26421.900000    0.004555  1.695863e+09  6.297896e+07
+75%    26443.400000    0.031402  1.695863e+09  6.297907e+07
+max    26480.000000   12.190000  1.695863e+09  6.297918e+07
+Start Time: 2023-09-28 00:38:47
+End Time: 2023-09-28 01:08:44
+Samples per Hour: 857.43
+One-Min OHLC:
+                     Price_open  Price_high  Price_low  Price_close  Volume_sum
+Timestamp                                                                      
+2023-09-28 00:38:00     26422.3     26422.4    26422.3      26422.3    0.018921
+2023-09-28 00:39:00     26422.4     26422.4    26421.4      26421.4    0.634296
+2023-09-28 00:40:00     26421.5     26422.4    26421.4      26422.4    0.250053
+2023-09-28 00:41:00     26453.6     26457.3    26453.0      26453.0    0.069851
+2023-09-28 00:42:00     26453.0     26453.0    26452.9      26452.9    0.204672
+2023-09-27 18:08:48,712 - INFO - Starting to poll for new data...
+2023-09-27 18:08:48,712 - INFO - Polling started.
+2023-09-27 18:08:48,713 - INFO - Fetching data since 1695861526...
+2023-09-27 18:08:49,668 - INFO - Fetched 428 new data rows.
+2023-09-27 18:08:49,686 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:08:49,734 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:08:51,758 - INFO - Fetching data since 1695861526...
+2023-09-27 18:08:52,864 - INFO - Fetched 428 new data rows.
+2023-09-27 18:08:52,873 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:08:52,897 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:08:54,914 - INFO - Fetching data since 1695861526...
+2023-09-27 18:08:55,858 - INFO - Fetched 428 new data rows.
+2023-09-27 18:08:55,866 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:08:55,889 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:08:57,903 - INFO - Fetching data since 1695861526...
+2023-09-27 18:08:59,094 - INFO - Fetched 428 new data rows.
+2023-09-27 18:08:59,115 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:08:59,155 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:09:01,176 - INFO - Fetching data since 1695861526...
+2023-09-27 18:09:02,315 - INFO - Fetched 428 new data rows.
+2023-09-27 18:09:02,326 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:09:02,355 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:09:04,365 - INFO - Fetching data since 1695861526...
+2023-09-27 18:09:05,433 - INFO - Fetched 431 new data rows.
+2023-09-27 18:09:05,447 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:09:05,490 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:09:07,509 - INFO - Fetching data since 1695861526...
+2023-09-27 18:09:08,706 - INFO - Fetched 431 new data rows.
+2023-09-27 18:09:08,725 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26422.3  0.007570  1.695862e+09        s            m       62978750
+1  26422.4  0.003781  1.695862e+09        b            l       62978751
+2  26422.3  0.007570  1.695862e+09        s            m       62978752
+3  26422.4  0.023373  1.695862e+09        b            m       62978753
+4  26421.5  0.010757  1.695862e+09        b            m       62978754
+2023-09-27 18:09:08,759 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:09:08,778 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:09:08,780 - ERROR - An error occurred: Command raised an exception: ValueError: Column "Open" NOT FOUND in Input DataFrame!
+            CHECK that your column names are correct AND/OR
+            CHECK for leading or trailing blanks in your column names.
+2023-09-27 18:11:40,014 - INFO - Starting the Discord bot...
+2023-09-27 18:11:40,014 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:11:40,016 - INFO - logging in using static token
+2023-09-27 18:11:40,885 - INFO - Shard ID None has connected to Gateway (Session ID: 9e9c46ed05862f564234e37c7d90adb6).
+2023-09-27 18:11:47,863 - INFO - Initializing TradeBot...
+2023-09-27 18:11:48,140 - INFO - Fetching initial data...
+2023-09-27 18:11:48,140 - INFO - Fetching data since 1695861707...
+2023-09-27 18:11:49,283 - INFO - Fetched 435 new data rows.
+2023-09-27 18:11:49,314 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    435.000000  435.000000  4.350000e+02  4.350000e+02
+mean   26420.870805    0.202111  1.695863e+09  6.297900e+07
+std       29.527020    0.823084  5.031790e+02  1.257179e+02
+min    26354.200000    0.000100  1.695862e+09  6.297879e+07
+25%    26400.100000    0.001000  1.695862e+09  6.297889e+07
+50%    26421.800000    0.004663  1.695863e+09  6.297900e+07
+75%    26442.200000    0.048160  1.695863e+09  6.297911e+07
+max    26480.000000   12.190000  1.695864e+09  6.297922e+07
+Start Time: 2023-09-28 00:42:01
+End Time: 2023-09-28 01:11:40
+Samples per Hour: 880.27
+One-Min OHLC:
+                     Price_open  Price_high  Price_low  Price_close  Volume_sum
+Timestamp                                                                      
+2023-09-28 00:42:00     26453.0     26453.0    26452.9      26452.9    0.204672
+2023-09-28 00:43:00     26453.0     26453.0    26452.9      26453.0    0.075711
+2023-09-28 00:44:00     26453.0     26453.0    26452.9      26453.0    0.081453
+2023-09-28 00:45:00     26453.0     26470.0    26452.9      26470.0    4.268698
+2023-09-28 00:46:00     26470.0     26480.0    26470.0      26480.0    2.052516
+2023-09-27 18:11:49,594 - INFO - Starting to poll for new data...
+2023-09-27 18:11:49,594 - INFO - Polling started.
+2023-09-27 18:11:49,594 - INFO - Fetching data since 1695861707...
+2023-09-27 18:11:50,657 - INFO - Fetched 435 new data rows.
+2023-09-27 18:11:50,670 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26453.0  0.017868  1.695862e+09        b            m       62978786
+1  26452.9  0.000200  1.695862e+09        s            l       62978787
+2  26452.9  0.005478  1.695862e+09        s            l       62978788
+3  26453.0  0.031225  1.695862e+09        b            m       62978789
+4  26452.9  0.015000  1.695862e+09        s            m       62978790
+2023-09-27 18:11:50,697 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:11:52,709 - INFO - Fetching data since 1695861707...
+2023-09-27 18:11:53,603 - INFO - Fetched 436 new data rows.
+2023-09-27 18:11:53,618 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26453.0  0.017868  1.695862e+09        b            m       62978786
+1  26452.9  0.000200  1.695862e+09        s            l       62978787
+2  26452.9  0.005478  1.695862e+09        s            l       62978788
+3  26453.0  0.031225  1.695862e+09        b            m       62978789
+4  26452.9  0.015000  1.695862e+09        s            m       62978790
+2023-09-27 18:11:53,660 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:11:53,667 - ERROR - An error occurred: Command raised an exception: ValueError: Columns must be same length as key
+2023-09-27 18:12:59,031 - INFO - Starting the Discord bot...
+2023-09-27 18:12:59,032 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:12:59,034 - INFO - logging in using static token
+2023-09-27 18:13:00,104 - INFO - Shard ID None has connected to Gateway (Session ID: 4916a8fb34fd09f37cb24a6efc14cea3).
+2023-09-27 18:13:04,022 - INFO - Initializing TradeBot...
+2023-09-27 18:13:04,247 - INFO - Fetching initial data...
+2023-09-27 18:13:04,247 - INFO - Fetching data since 1695861784...
+2023-09-27 18:13:05,212 - INFO - Fetched 441 new data rows.
+2023-09-27 18:13:05,248 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    441.000000  441.000000  4.410000e+02  4.410000e+02
+mean   26418.029932    0.199362  1.695863e+09  6.297902e+07
+std       30.314788    0.817785  5.052877e+02  1.274500e+02
+min    26354.200000    0.000100  1.695862e+09  6.297880e+07
+25%    26391.600000    0.001000  1.695862e+09  6.297891e+07
+50%    26421.800000    0.004636  1.695863e+09  6.297902e+07
+75%    26438.200000    0.044086  1.695863e+09  6.297913e+07
+max    26480.000000   12.190000  1.695864e+09  6.297924e+07
+Start Time: 2023-09-28 00:43:07
+End Time: 2023-09-28 01:13:04
+Samples per Hour: 883.47
+One-Min OHLC:
+                     Price_open  Price_high  Price_low  Price_close  Volume_sum
+Timestamp                                                                      
+2023-09-28 00:43:00     26453.0     26453.0    26452.9      26453.0    0.071657
+2023-09-28 00:44:00     26453.0     26453.0    26452.9      26453.0    0.081453
+2023-09-28 00:45:00     26453.0     26470.0    26452.9      26470.0    4.268698
+2023-09-28 00:46:00     26470.0     26480.0    26470.0      26480.0    2.052516
+2023-09-28 00:47:00     26480.0     26480.0    26470.0      26470.0    0.063814
+2023-09-27 18:13:07,051 - INFO - Starting to poll for new data...
+2023-09-27 18:13:07,052 - INFO - Polling started.
+2023-09-27 18:13:07,052 - INFO - Fetching data since 1695861784...
+2023-09-27 18:13:07,961 - INFO - Fetched 441 new data rows.
+2023-09-27 18:13:07,971 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26453.0  0.001400  1.695862e+09        b            m       62978798
+1  26453.0  0.031229  1.695862e+09        b            m       62978799
+2  26453.0  0.003780  1.695862e+09        b            m       62978800
+3  26453.0  0.006271  1.695862e+09        b            m       62978801
+4  26452.9  0.009492  1.695862e+09        s            m       62978802
+2023-09-27 18:13:07,994 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:13:10,010 - INFO - Fetching data since 1695861784...
+2023-09-27 18:13:11,050 - INFO - Fetched 441 new data rows.
+2023-09-27 18:13:11,059 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26453.0  0.001400  1.695862e+09        b            m       62978798
+1  26453.0  0.031229  1.695862e+09        b            m       62978799
+2  26453.0  0.003780  1.695862e+09        b            m       62978800
+3  26453.0  0.006271  1.695862e+09        b            m       62978801
+4  26452.9  0.009492  1.695862e+09        s            m       62978802
+2023-09-27 18:13:11,084 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:13:11,091 - ERROR - An error occurred: Command raised an exception: ValueError: Columns must be same length as key
+2023-09-27 18:14:56,411 - INFO - Starting the Discord bot...
+2023-09-27 18:14:56,411 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:14:56,413 - INFO - logging in using static token
+2023-09-27 18:14:57,474 - INFO - Shard ID None has connected to Gateway (Session ID: c6cc79a2511c0f7aa0a5ba0ac073484f).
+2023-09-27 18:14:59,637 - INFO - Initializing TradeBot...
+2023-09-27 18:14:59,838 - INFO - Fetching initial data...
+2023-09-27 18:14:59,838 - INFO - Fetching data since 1695861899...
+2023-09-27 18:15:01,065 - INFO - Fetched 433 new data rows.
+2023-09-27 18:15:01,134 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    433.000000  433.000000  4.330000e+02  4.330000e+02
+mean   26415.347575    0.203057  1.695863e+09  6.297903e+07
+std       30.450230    0.824878  4.933571e+02  1.251406e+02
+min    26354.200000    0.000037  1.695862e+09  6.297882e+07
+25%    26384.700000    0.001000  1.695862e+09  6.297892e+07
+50%    26421.800000    0.004636  1.695863e+09  6.297903e+07
+75%    26428.600000    0.050000  1.695863e+09  6.297914e+07
+max    26480.000000   12.190000  1.695864e+09  6.297925e+07
+Start Time: 2023-09-28 00:45:00
+End Time: 2023-09-28 01:14:59
+Samples per Hour: 866.48
+One-Min OHLC:
+                     Price_open  Price_high  Price_low  Price_close  Volume_sum
+Timestamp                                                                      
+2023-09-28 00:45:00     26453.0     26470.0    26452.9      26470.0    4.268698
+2023-09-28 00:46:00     26470.0     26480.0    26470.0      26480.0    2.052516
+2023-09-28 00:47:00     26480.0     26480.0    26470.0      26470.0    0.063814
+2023-09-28 00:48:00     26469.9     26469.9    26450.0      26450.0    7.260996
+2023-09-28 00:49:00     26433.5     26433.5    26421.8      26421.8    0.013609
+2023-09-27 18:15:01,438 - INFO - Starting to poll for new data...
+2023-09-27 18:15:01,438 - INFO - Polling started.
+2023-09-27 18:15:01,439 - INFO - Fetching data since 1695861899...
+2023-09-27 18:15:02,625 - INFO - Fetched 433 new data rows.
+2023-09-27 18:15:02,647 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26453.0  0.000559  1.695862e+09        b            l       62978817
+1  26452.9  0.004355  1.695862e+09        s            m       62978818
+2  26452.9  0.002605  1.695862e+09        s            m       62978819
+3  26452.9  0.000866  1.695862e+09        s            m       62978820
+4  26452.9  0.000287  1.695862e+09        s            m       62978821
+2023-09-27 18:15:02,695 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:15:04,725 - INFO - Fetching data since 1695861899...
+2023-09-27 18:15:05,913 - INFO - Fetched 434 new data rows.
+2023-09-27 18:15:05,921 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26453.0  0.000559  1.695862e+09        b            l       62978817
+1  26452.9  0.004355  1.695862e+09        s            m       62978818
+2  26452.9  0.002605  1.695862e+09        s            m       62978819
+3  26452.9  0.000866  1.695862e+09        s            m       62978820
+4  26452.9  0.000287  1.695862e+09        s            m       62978821
+2023-09-27 18:15:05,959 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:15:05,966 - ERROR - An error occurred: Command raised an exception: ValueError: Columns must be same length as key
+2023-09-27 18:16:37,848 - INFO - Starting the Discord bot...
+2023-09-27 18:16:37,848 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:16:37,850 - INFO - logging in using static token
+2023-09-27 18:16:38,804 - INFO - Shard ID None has connected to Gateway (Session ID: fc3cba8efdf23ddeab60f6819bc2b89b).
+2023-09-27 18:16:58,927 - INFO - Initializing TradeBot...
+2023-09-27 18:16:59,168 - INFO - Fetching initial data...
+2023-09-27 18:16:59,169 - INFO - Fetching data since 1695862018...
+2023-09-27 18:17:00,238 - INFO - Fetched 419 new data rows.
+2023-09-27 18:17:00,264 - ERROR - An error occurred: Command raised an exception: AttributeError: 'NoneType' object has no attribute 'columns'
+2023-09-27 18:17:40,537 - INFO - Starting the Discord bot...
+2023-09-27 18:17:40,538 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:17:40,540 - INFO - logging in using static token
+2023-09-27 18:17:41,493 - INFO - Shard ID None has connected to Gateway (Session ID: b34d1d15ddd597b89a500bf46826a05e).
+2023-09-27 18:17:43,951 - INFO - Initializing TradeBot...
+2023-09-27 18:17:44,179 - INFO - Fetching initial data...
+2023-09-27 18:17:44,179 - INFO - Fetching data since 1695862063...
+2023-09-27 18:17:45,079 - INFO - Fetched 417 new data rows.
+2023-09-27 18:17:45,124 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    417.000000  417.000000  4.170000e+02  4.170000e+02
+mean   26407.366427    0.196233  1.695863e+09  6.297907e+07
+std       26.789393    0.826548  4.738531e+02  1.205218e+02
+min    26354.200000    0.000037  1.695862e+09  6.297886e+07
+25%    26384.600000    0.001000  1.695863e+09  6.297896e+07
+50%    26420.100000    0.004810  1.695863e+09  6.297907e+07
+75%    26423.600000    0.050000  1.695863e+09  6.297917e+07
+max    26470.000000   12.190000  1.695864e+09  6.297928e+07
+Start Time: 2023-09-28 00:47:54
+End Time: 2023-09-28 01:17:31
+Samples per Hour: 844.79
+One-Min OHLC:
+                        open     high      low    close  Volume_sum
+Timestamp                                                          
+2023-09-28 00:47:00  26470.0  26470.0  26470.0  26470.0    0.000823
+2023-09-28 00:48:00  26469.9  26469.9  26450.0  26450.0    7.260996
+2023-09-28 00:49:00  26433.5  26433.5  26421.8  26421.8    0.013609
+2023-09-28 00:50:00  26421.8  26421.9  26421.7  26421.9    0.911794
+2023-09-28 00:51:00  26421.9  26421.9  26421.7  26421.8    0.041477
+2023-09-27 18:17:45,332 - INFO - Starting to poll for new data...
+2023-09-27 18:17:45,332 - INFO - Polling started.
+2023-09-27 18:17:45,332 - INFO - Fetching data since 1695862063...
+2023-09-27 18:17:46,273 - INFO - Fetched 417 new data rows.
+2023-09-27 18:17:46,281 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26470.0  0.000823  1.695862e+09        b            m       62978859
+1  26469.9  0.167655  1.695862e+09        s            m       62978860
+2  26469.9  0.002558  1.695862e+09        s            m       62978861
+3  26469.9  0.000850  1.695862e+09        s            m       62978862
+4  26469.9  0.000283  1.695862e+09        s            m       62978863
+2023-09-27 18:17:46,318 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:17:46,322 - ERROR - An error occurred: Command raised an exception: KeyError: 'Close'
+2023-09-27 18:18:47,829 - INFO - Starting the Discord bot...
+2023-09-27 18:18:47,829 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:18:47,831 - INFO - logging in using static token
+2023-09-27 18:18:48,607 - INFO - Shard ID None has connected to Gateway (Session ID: 4833039c2f08c123d38cbe36c8e119fb).
+2023-09-27 18:18:52,528 - INFO - Initializing TradeBot...
+2023-09-27 18:18:52,757 - INFO - Fetching initial data...
+2023-09-27 18:18:52,757 - INFO - Fetching data since 1695862132...
+2023-09-27 18:18:53,869 - INFO - Fetched 421 new data rows.
+2023-09-27 18:18:53,928 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    421.000000  421.000000  4.210000e+02  4.210000e+02
+mean   26404.485986    0.177674  1.695863e+09  6.297908e+07
+std       25.922542    0.754798  4.831496e+02  1.216765e+02
+min    26354.200000    0.000037  1.695862e+09  6.297887e+07
+25%    26380.400000    0.001000  1.695863e+09  6.297898e+07
+50%    26420.100000    0.004794  1.695863e+09  6.297908e+07
+75%    26421.900000    0.041077  1.695863e+09  6.297919e+07
+max    26450.100000   12.190000  1.695864e+09  6.297929e+07
+Start Time: 2023-09-28 00:48:54
+End Time: 2023-09-28 01:18:51
+Samples per Hour: 843.41
+One-Min OHLC:
+                        Open     High      Low    Close  Volume_sum
+Timestamp                                                          
+2023-09-28 00:48:00  26450.1  26450.1  26450.0  26450.0    0.001297
+2023-09-28 00:49:00  26433.5  26433.5  26421.8  26421.8    0.013609
+2023-09-28 00:50:00  26421.8  26421.9  26421.7  26421.9    0.911794
+2023-09-28 00:51:00  26421.9  26421.9  26421.7  26421.8    0.041477
+2023-09-28 00:52:00  26421.8  26425.8  26421.8  26421.9    0.472088
+2023-09-27 18:18:54,161 - INFO - Starting to poll for new data...
+2023-09-27 18:18:54,161 - INFO - Polling started.
+2023-09-27 18:18:54,161 - INFO - Fetching data since 1695862132...
+2023-09-27 18:18:55,036 - INFO - Fetched 421 new data rows.
+2023-09-27 18:18:55,046 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:18:55,092 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:18:57,114 - INFO - Fetching data since 1695862132...
+2023-09-27 18:18:58,211 - INFO - Fetched 421 new data rows.
+2023-09-27 18:18:58,224 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:18:58,274 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:19:00,285 - INFO - Fetching data since 1695862132...
+2023-09-27 18:19:01,431 - INFO - Fetched 421 new data rows.
+2023-09-27 18:19:01,447 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:19:01,508 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:19:03,523 - INFO - Fetching data since 1695862132...
+2023-09-27 18:19:04,474 - INFO - Fetched 422 new data rows.
+2023-09-27 18:19:04,489 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:19:04,545 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:19:06,569 - INFO - Fetching data since 1695862132...
+2023-09-27 18:19:07,717 - INFO - Fetched 422 new data rows.
+2023-09-27 18:19:07,730 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:19:07,784 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:19:09,804 - INFO - Fetching data since 1695862132...
+2023-09-27 18:19:10,952 - INFO - Fetched 422 new data rows.
+2023-09-27 18:19:10,968 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:19:11,030 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:19:13,056 - INFO - Fetching data since 1695862132...
+2023-09-27 18:19:14,157 - INFO - Fetched 422 new data rows.
+2023-09-27 18:19:14,168 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26450.1  0.000507  1.695862e+09        b            m       62978871
+1  26450.0  0.000389  1.695862e+09        s            l       62978872
+2  26450.0  0.000401  1.695862e+09        s            l       62978873
+3  26433.5  0.003937  1.695862e+09        b            m       62978874
+4  26433.5  0.004293  1.695862e+09        b            l       62978875
+2023-09-27 18:19:14,238 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:19:14,272 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:19:14,997 - ERROR - An error occurred: Command raised an exception: TypeError: apdata is list but NOT of float or int
+2023-09-27 18:21:11,543 - INFO - Starting the Discord bot...
+2023-09-27 18:21:11,544 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:21:11,545 - INFO - logging in using static token
+2023-09-27 18:21:12,517 - INFO - Shard ID None has connected to Gateway (Session ID: ee81b0122c388cf41e4e20fce7499883).
+2023-09-27 18:21:14,334 - INFO - Initializing TradeBot...
+2023-09-27 18:21:14,547 - INFO - Fetching initial data...
+2023-09-27 18:21:14,547 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:15,778 - INFO - Fetched 409 new data rows.
+2023-09-27 18:21:15,854 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    409.000000  409.000000  4.090000e+02  4.090000e+02
+mean   26401.913203    0.180908  1.695863e+09  6.297910e+07
+std       26.325770    0.765149  4.792804e+02  1.182124e+02
+min    26354.200000    0.000037  1.695862e+09  6.297890e+07
+25%    26372.800000    0.001000  1.695863e+09  6.297900e+07
+50%    26407.900000    0.004878  1.695863e+09  6.297910e+07
+75%    26421.900000    0.041077  1.695863e+09  6.297920e+07
+max    26444.700000   12.190000  1.695864e+09  6.297930e+07
+Start Time: 2023-09-28 00:51:45
+End Time: 2023-09-28 01:21:07
+Samples per Hour: 835.64
+One-Min OHLC:
+                        Open     High      Low    Close  Volume_sum
+Timestamp                                                          
+2023-09-28 00:51:00  26421.9  26421.9  26421.7  26421.8    0.038011
+2023-09-28 00:52:00  26421.8  26425.8  26421.8  26421.9    0.472088
+2023-09-28 00:53:00  26421.9  26421.9  26421.7  26421.8    0.174927
+2023-09-28 00:54:00  26420.2  26421.7  26420.2  26421.7    0.054752
+2023-09-28 00:55:00  26421.9  26444.7  26421.9  26440.9   24.651861
+2023-09-27 18:21:16,062 - INFO - Starting to poll for new data...
+2023-09-27 18:21:16,062 - INFO - Polling started.
+2023-09-27 18:21:16,063 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:17,215 - INFO - Fetched 409 new data rows.
+2023-09-27 18:21:17,229 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:17,309 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:19,336 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:20,335 - INFO - Fetched 409 new data rows.
+2023-09-27 18:21:20,352 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:20,402 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:22,413 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:23,536 - INFO - Fetched 409 new data rows.
+2023-09-27 18:21:23,548 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:23,603 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:25,618 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:26,856 - INFO - Fetched 409 new data rows.
+2023-09-27 18:21:26,871 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:26,929 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:28,955 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:29,853 - INFO - Fetched 418 new data rows.
+2023-09-27 18:21:29,863 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:29,915 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:31,932 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:33,045 - INFO - Fetched 418 new data rows.
+2023-09-27 18:21:33,064 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:33,124 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:35,142 - INFO - Fetching data since 1695862274...
+2023-09-27 18:21:36,388 - INFO - Fetched 418 new data rows.
+2023-09-27 18:21:36,407 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000742  1.695862e+09        b            l       62978897
+1  26421.8  0.002664  1.695862e+09        s            l       62978898
+2  26421.8  0.000889  1.695862e+09        s            l       62978899
+3  26421.8  0.000295  1.695862e+09        s            l       62978900
+4  26421.7  0.022151  1.695862e+09        s            l       62978901
+2023-09-27 18:21:36,472 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:21:36,491 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:21:36,814 - ERROR - An error occurred: Command raised an exception: TypeError: apdata is list but NOT of float or int
+2023-09-27 18:22:30,318 - INFO - Starting the Discord bot...
+2023-09-27 18:22:30,318 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:22:30,320 - INFO - logging in using static token
+2023-09-27 18:22:31,093 - INFO - Shard ID None has connected to Gateway (Session ID: 5563d0f206191cab113a7ea4ebca4be4).
+2023-09-27 18:22:33,291 - INFO - Initializing TradeBot...
+2023-09-27 18:22:33,531 - INFO - Fetching initial data...
+2023-09-27 18:22:33,532 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:34,437 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:34,485 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    412.000000  412.000000  4.120000e+02  4.120000e+02
+mean   26399.318447    0.181844  1.695863e+09  6.297912e+07
+std       26.756155    0.763188  5.008478e+02  1.190784e+02
+min    26354.200000    0.000037  1.695862e+09  6.297892e+07
+25%    26372.800000    0.000984  1.695863e+09  6.297902e+07
+50%    26397.100000    0.004861  1.695863e+09  6.297912e+07
+75%    26421.900000    0.039738  1.695864e+09  6.297922e+07
+max    26444.700000   12.190000  1.695864e+09  6.297933e+07
+Start Time: 2023-09-28 00:52:56
+End Time: 2023-09-28 01:22:25
+Samples per Hour: 838.44
+One-Min OHLC:
+                        Open     High      Low    Close  Volume_sum
+Timestamp                                                          
+2023-09-28 00:52:00  26421.9  26421.9  26421.9  26421.9    0.000100
+2023-09-28 00:53:00  26421.9  26421.9  26421.7  26421.8    0.174927
+2023-09-28 00:54:00  26420.2  26421.7  26420.2  26421.7    0.054752
+2023-09-28 00:55:00  26421.9  26444.7  26421.9  26440.9   24.651861
+2023-09-28 00:56:00  26441.0  26441.3  26428.7  26428.7    0.079092
+2023-09-27 18:22:34,709 - INFO - Starting to poll for new data...
+2023-09-27 18:22:34,709 - INFO - Polling started.
+2023-09-27 18:22:34,709 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:35,849 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:35,858 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:35,903 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:37,927 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:39,279 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:39,301 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:39,364 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:41,384 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:42,685 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:42,699 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:42,755 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:44,781 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:45,908 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:45,921 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:45,977 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:47,997 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:49,104 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:49,116 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:49,165 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:51,192 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:52,169 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:52,181 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:52,246 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:54,272 - INFO - Fetching data since 1695862353...
+2023-09-27 18:22:55,334 - INFO - Fetched 412 new data rows.
+2023-09-27 18:22:55,349 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26421.9  0.000100  1.695862e+09        b            m       62978916
+1  26421.9  0.000900  1.695862e+09        b            m       62978917
+2  26421.9  0.038798  1.695862e+09        b            m       62978918
+3  26421.9  0.031162  1.695862e+09        b            m       62978919
+4  26421.8  0.000802  1.695862e+09        s            m       62978920
+2023-09-27 18:22:55,421 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:22:55,449 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:22:55,731 - ERROR - An error occurred: Command raised an exception: TypeError: apdata is list but NOT of float or int
+2023-09-27 18:27:12,312 - INFO - Starting the Discord bot...
+2023-09-27 18:27:12,313 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:27:12,314 - INFO - logging in using static token
+2023-09-27 18:27:13,109 - INFO - Shard ID None has connected to Gateway (Session ID: 5d0d2d891e6b981719c754ea140d7832).
+2023-09-27 18:27:14,903 - INFO - Initializing TradeBot...
+2023-09-27 18:27:15,197 - INFO - Fetching initial data...
+2023-09-27 18:27:15,197 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:16,392 - INFO - Fetched 417 new data rows.
+2023-09-27 18:27:16,486 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    417.000000  417.000000  4.170000e+02  4.170000e+02
+mean   26397.871703    0.126590  1.695863e+09  6.297919e+07
+std       24.921559    0.682511  5.546429e+02  1.205218e+02
+min    26354.200000    0.000037  1.695863e+09  6.297898e+07
+25%    26372.800000    0.001000  1.695863e+09  6.297908e+07
+50%    26394.000000    0.004000  1.695863e+09  6.297919e+07
+75%    26421.800000    0.023342  1.695864e+09  6.297929e+07
+max    26430.700000   12.190000  1.695864e+09  6.297940e+07
+Start Time: 2023-09-28 00:57:14
+End Time: 2023-09-28 01:27:07
+Samples per Hour: 837.26
+One-Min OHLC:
+                        Open     High      Low    Close  Volume_sum
+Timestamp                                                          
+2023-09-28 00:57:00  26428.6  26428.6  26421.8  26423.5   23.747276
+2023-09-28 00:58:00  26423.4  26424.9  26420.1  26420.1    0.151676
+2023-09-28 00:59:00  26420.1  26428.7  26420.1  26427.1    0.058403
+2023-09-28 01:00:00  26427.1  26427.1  26423.4  26423.7    0.929927
+2023-09-28 01:01:00  26423.7  26429.6  26420.1  26420.2    0.272581
+2023-09-27 18:27:16,706 - INFO - Starting to poll for new data...
+2023-09-27 18:27:16,706 - INFO - Polling started.
+2023-09-27 18:27:16,707 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:17,915 - INFO - Fetched 418 new data rows.
+2023-09-27 18:27:17,928 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:17,991 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:20,020 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:21,335 - INFO - Fetched 418 new data rows.
+2023-09-27 18:27:21,349 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:21,415 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:23,441 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:24,568 - INFO - Fetched 418 new data rows.
+2023-09-27 18:27:24,578 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:24,626 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:26,640 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:27,581 - INFO - Fetched 419 new data rows.
+2023-09-27 18:27:27,593 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:27,639 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:29,650 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:30,694 - INFO - Fetched 419 new data rows.
+2023-09-27 18:27:30,705 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:30,758 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:32,784 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:33,990 - INFO - Fetched 419 new data rows.
+2023-09-27 18:27:34,003 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:34,071 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:36,084 - INFO - Fetching data since 1695862634...
+2023-09-27 18:27:37,169 - INFO - Fetched 419 new data rows.
+2023-09-27 18:27:37,184 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26428.6  0.100000  1.695863e+09        s            m       62978981
+1  26428.6  0.009310  1.695863e+09        s            m       62978982
+2  26428.6  0.999300  1.695863e+09        s            m       62978983
+3  26428.6  0.135426  1.695863e+09        s            m       62978984
+4  26428.6  1.600000  1.695863e+09        s            m       62978985
+2023-09-27 18:27:37,236 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:27:37,256 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:27:37,257 - ERROR - An error occurred: Command raised an exception: KeyError: 'Timestamp'
+2023-09-27 18:32:17,108 - INFO - Starting the Discord bot...
+2023-09-27 18:32:17,109 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-09-27 18:32:17,110 - INFO - logging in using static token
+2023-09-27 18:32:17,987 - INFO - Shard ID None has connected to Gateway (Session ID: a6468a7adee32ebf333605ab34116a79).
+2023-09-27 18:32:21,469 - INFO - Initializing TradeBot...
+2023-09-27 18:32:21,680 - INFO - Fetching initial data...
+2023-09-27 18:32:21,680 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:22,813 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:22,897 - INFO - Initial insights: Data Summary:
+              Price      Volume     Timestamp       TradeID
+count    384.000000  384.000000  3.840000e+02  3.840000e+02
+mean   26396.014583    0.073719  1.695864e+09  6.297927e+07
+std       25.263552    0.639652  5.369559e+02  1.109955e+02
+min    26354.200000    0.000037  1.695863e+09  6.297908e+07
+25%    26372.800000    0.000764  1.695863e+09  6.297917e+07
+50%    26386.300000    0.002845  1.695864e+09  6.297927e+07
+75%    26420.100000    0.017024  1.695864e+09  6.297937e+07
+max    26430.700000   12.190000  1.695865e+09  6.297946e+07
+Start Time: 2023-09-28 01:02:25
+End Time: 2023-09-28 01:32:15
+Samples per Hour: 772.29
+One-Min OHLC:
+                        Open     High      Low    Close  Volume_sum
+Timestamp                                                          
+2023-09-28 01:02:00  26420.0  26420.1  26420.0  26420.1    0.013469
+2023-09-28 01:03:00  26420.1  26420.1  26420.0  26420.0    0.086837
+2023-09-28 01:04:00  26420.1  26420.1  26410.0  26410.0    0.291005
+2023-09-28 01:05:00  26410.1  26410.1  26384.6  26384.7   16.939681
+2023-09-28 01:06:00  26384.7  26384.7  26384.6  26384.6    0.153941
+2023-09-27 18:32:23,158 - INFO - Starting to poll for new data...
+2023-09-27 18:32:23,158 - INFO - Polling started.
+2023-09-27 18:32:23,158 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:24,336 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:24,347 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:24,398 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:26,413 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:27,582 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:27,593 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:27,641 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:29,662 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:30,994 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:31,014 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:31,093 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:33,116 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:34,332 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:34,354 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:34,421 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:36,441 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:37,584 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:37,608 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:37,690 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:39,699 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:41,005 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:41,023 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:41,106 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:43,122 - INFO - Fetching data since 1695862941...
+2023-09-27 18:32:44,237 - INFO - Fetched 384 new data rows.
+2023-09-27 18:32:44,250 - INFO - New raw data:      Price    Volume     Timestamp Buy/Sell Market/Limit Misc   TradeID
+0  26420.0  0.000252  1.695863e+09        s            m       62979078
+1  26420.1  0.007212  1.695863e+09        b            m       62979079
+2  26420.1  0.002897  1.695863e+09        b            m       62979080
+3  26420.1  0.003109  1.695863e+09        b            m       62979081
+4  26420.1  0.001892  1.695863e+09        b            l       62979082
+2023-09-27 18:32:44,298 - INFO - Appending new 1-minute OHLC data to existing DataFrame.
+2023-09-27 18:32:44,318 - INFO - Saved one_min_ohlc to output/one_min_ohlc.csv.
+2023-09-27 18:32:44,318 - ERROR - An error occurred: Command raised an exception: KeyError: 'Timestamp'
