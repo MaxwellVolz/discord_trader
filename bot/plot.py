@@ -1,62 +1,70 @@
+from mplfinance.original_flavor import candlestick_ohlc
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib.ticker import FuncFormatter
 import pandas as pd
 
 
-def candlestick_plot(df):
-    # Convert the 'Timestamp' column to datetime format and set it as index
+def calculate_bollinger_bands(df, column, length, k_values):
+    sma = df[column].rolling(window=length).mean()
+    std = df[column].rolling(window=length).std()
+    bollinger_bands = {}
+    for k in k_values:
+        bollinger_bands[f"Upper_{k}"] = sma + (std * k)
+        bollinger_bands[f"Lower_{k}"] = sma - (std * k)
+    return bollinger_bands
+
+
+def plot_and_save(df, filename="plot.png"):
     df["Timestamp"] = pd.to_datetime(df["Timestamp"])
     df.set_index("Timestamp", inplace=True)
 
-    # First Subplot (OHLC)
-    fig, ax1 = plt.subplots(figsize=(12, 6))
-    ax1.set_title("OHLC and Volume")
-    ax1.set_xlabel("Timestamp")
-    ax1.set_ylabel("OHLC")
-    ax1.plot(df.index, df["Open"], label="Open", color="blue")
-    ax1.plot(df.index, df["High"], label="High", color="green")
-    ax1.plot(df.index, df["Low"], label="Low", color="red")
-    ax1.plot(df.index, df["Close"], label="Close", color="black")
+    k_values = [2, 3, 4]
+    length = 20
+    bands = calculate_bollinger_bands(df, "Close", length, k_values)
 
-    # Twin axis for Volume
-    ax2 = ax1.twinx()
-    ax2.set_ylabel("Volume")
-    ax2.bar(df.index, df["Volume_sum"], alpha=0.3, color="purple", label="Volume")
+    for key, value in bands.items():
+        df[key] = value
+
+    df.reset_index(inplace=True)
+    df["Timestamp"] = df["Timestamp"].map(mdates.date2num)
+
+    fig, ax = plt.subplots(figsize=(15, 8))
+
+    ax.set_facecolor("#151823")
+    fig.patch.set_facecolor("#151823")
+
+    ax.xaxis_date()
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d %H:%M:%S"))
+    plt.xticks(rotation=45)
+
+    candlestick_ohlc(
+        ax,
+        df[["Timestamp", "Open", "High", "Low", "Close"]].values,
+        width=0.01,
+        colorup="g",
+        colordown="r",
+    )
+
+    colors = ["red", "yellow", "orange"]
+    for k, color in zip(k_values, colors):
+        ax.plot(df["Timestamp"], df[f"Upper_{k}"], color=color, label=f"Upper {k} std")
+        ax.plot(df["Timestamp"], df[f"Lower_{k}"], color=color, label=f"Lower {k} std")
+
+    def format_to_dollars(x, pos):
+        return f"${x:,.0f}"
+
+    formatter = FuncFormatter(format_to_dollars)
+    ax.yaxis.set_major_formatter(formatter)
+
+    ax.tick_params(axis="x", colors="white")
+    ax.tick_params(axis="y", colors="white")
+    ax.xaxis.label.set_color("white")
+    ax.yaxis.label.set_color("white")
+
+    ax.legend(loc="upper left")
 
     # Save first plot
-    fig.savefig("output/OHLC_and_Volume.png")
+    fig.savefig(f"output/{filename}")
 
-    # Second Subplot (Indicators)
-    fig, ax3 = plt.subplots(figsize=(12, 6))
-    ax3.set_title("Indicators")
-    ax3.set_xlabel("Timestamp")
-    ax3.set_ylabel("SMA, Bollinger Bands")
-    ax3.plot(df.index, df["SMA"], label="SMA", color="blue")
-    ax3.plot(
-        df.index, df["Bollinger_Upper_2"], label="Upper Bollinger x2", color="green"
-    )
-    ax3.plot(df.index, df["Bollinger_Lower_2"], label="Lower Bollinger x2", color="red")
-
-    # Twin axis for RSI and Stochastic
-    ax4 = ax3.twinx()
-    ax4.set_ylabel("RSI, Stochastic")
-    ax4.plot(df.index, df["RSI"], label="RSI", linestyle="dashed", color="orange")
-    ax4.plot(
-        df.index,
-        df["Stochastic"],
-        label="Stochastic",
-        linestyle="dashed",
-        color="purple",
-    )
-
-    # Legends
-    ax1.legend(loc="upper left")
-    ax2.legend(loc="upper right")
-    ax3.legend(loc="upper left")
-    ax4.legend(loc="upper right")
-
-    plt.tight_layout()
-
-    # Save second plot
-    fig.savefig("output/Indicators.png")
-
-    return "output/OHLC_and_Volume.png", "output/Indicators.png"
+    return f"output/{filename}"

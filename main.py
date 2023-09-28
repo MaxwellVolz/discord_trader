@@ -25,7 +25,7 @@ bot = commands.Bot(
 async def start(ctx):
     trading_bot_instance = TradeBot(ctx)
     await ctx.send("Initialized TradeBot.")
-    await trading_bot_instance.initialize_data()
+    await trading_bot_instance.initialize()
 
 
 @bot.event
