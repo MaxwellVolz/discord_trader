@@ -166,11 +166,11 @@ class DataBot:
         raw_data.index = pd.to_datetime(raw_data["Timestamp"], unit="s")
         raw_data["Timestamp"] = pd.to_datetime(raw_data["Timestamp"], unit="s")
 
-        price_ohlc = raw_data["Price"].resample("1T").ohlc()
+        price_ohlc = raw_data["Price"].resample("5T").ohlc()
         price_ohlc.columns = ["Open", "High", "Low", "Close"]
 
         # Calculate the volume sum for each time period.
-        volume_sum = raw_data["Volume"].resample("1T").sum()
+        volume_sum = raw_data["Volume"].resample("5T").sum()
         price_ohlc["Volume_sum"] = volume_sum.values
 
         # Forward fill gaps in the data
