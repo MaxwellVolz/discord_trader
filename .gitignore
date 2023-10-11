@@ -3,3 +3,5 @@
 plots/*
 output/old
 output/*csv
+
+*.pyc
