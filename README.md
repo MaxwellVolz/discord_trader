@@ -11,3 +11,7 @@ discord bot for crypto trading and data analysis
 - utils.py: This could be a general-purpose utility file where you place various helper functions that are used throughout the project but don't necessarily belong in api_utils.py or bot.py.
 
 - __init__.py: This empty file makes the directory a Python package, which means you can run the files as modules. This could be useful for testing and better structure.
+
+## Upon bot deployment
+
+1. run strategy on last 6 hours

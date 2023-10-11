@@ -1,5 +1,5 @@
 import pandas as pd
-from bot.plot_bot import plot_candlestick_with_bollinger
+from plot import plot_candlestick_with_bollinger
 from bot.utils import calc_bollinger_bands, calc_RSI, calc_stochastic
 from datetime import timedelta
 

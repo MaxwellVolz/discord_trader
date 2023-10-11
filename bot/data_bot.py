@@ -6,7 +6,7 @@ import discord
 import asyncio
 from datetime import datetime, timedelta
 from bot.utils import calc_bollinger_bands, calc_RSI, calc_stochastic
-from bot.plot_bot import plot_candlestick_with_bollinger
+from plot import plot_candlestick_with_bollinger
 import os
 
 
