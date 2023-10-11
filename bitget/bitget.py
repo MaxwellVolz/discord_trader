@@ -1,5 +1,6 @@
 import os
 import time
+import hmac
 import hashlib
 import base64
 import asyncio
@@ -45,9 +46,15 @@ class BitGet:
     def generate_signature(self):
         timestamp = str(int(time.time()))
         content = f"{timestamp}GET/user/verify"
-        hashed_content = hashlib.hmac.new(
-            self.secret_key.encode(), content.encode(), hashlib.sha256
-        ).digest()
+
+        h = hmac.new(
+            self.secret_key.encode(), msg=content.encode(), digestmod=hashlib.sha256
+        )
+        hashed_content = h.digest()
+
+        # hashed_content = hashlib.hmac.new(
+        #     self.secret_key.encode(), content.encode(), hashlib.sha256
+        # ).digest()
         signature = base64.b64encode(hashed_content).decode()
         return timestamp, signature
 
@@ -100,5 +107,5 @@ class BitGet:
 
 
 # Initialize and connect
-bitget = BitGet()
-asyncio.get_event_loop().run_until_complete(bitget.connect())
+# bitget = BitGet()
+# asyncio.get_event_loop().run_until_complete(bitget.connect())
