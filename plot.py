@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from matplotlib.dates import date2num, DateFormatter
 from matplotlib.ticker import FuncFormatter
-from datetime import datetime, timedelta
 import os
-from bitget.bitget import BitGet
-import asyncio
+
 from bot.utils import calc_bollinger_bands, calc_RSI, calc_stochastic
+from matplotlib import style
+from matplotlib.dates import DateFormatter
+from matplotlib.gridspec import GridSpec
 
 
 def format_to_dollars(x, pos):
@@ -64,27 +64,30 @@ def plot_candlestick_with_bollinger(df, save_path=None):
     df["Date"] = df.index
     df.sort_values(by="Date", inplace=True)
 
-    # Convert Unix timestamp to datetime and assign to a new column
-    # df["Date"] = df["Date"].dt.tz_localize("UTC").dt.tz_convert("America/Los_Angeles")
-
     df["Date"] = (
         pd.to_datetime(df["Date"], unit="s")
         .dt.tz_localize("UTC")
         .dt.tz_convert("America/Los_Angeles")
     )
-    print("First timestamp:", df["Date"].iloc[0])
-    print("Last timestamp:", df["Date"].iloc[-1])
-
-    # Sort DataFrame by datetime
+    # print("First timestamp:", df["Date"].iloc[0])
+    # print("Last timestamp:", df["Date"].iloc[-1])
 
     # Setup the plot
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
+    fig, (ax, ax_indicator) = plt.subplots(2, sharex=True, figsize=(30, 20))
 
-    # Candles
+    style.use("dark_background")
+    # Create grid layout
+    gs = GridSpec(3, 1)  # 3 rows, 1 column
 
-    # Setting width of candlestick elements
+    # Allocate grid space
+    ax = plt.subplot(gs[:2, 0])  # Takes up first two rows
+    ax_indicator = plt.subplot(gs[2, 0], sharex=ax)  # Takes up last row
+
+    # Candlestick Config
     width = 0.0015
     width2 = 0.0003
+
     # Identify 'up' and 'down' movements in price
     up = df[df["Close"] >= df["Open"]]
     down = df[df["Close"] < df["Open"]]
@@ -112,8 +115,6 @@ def plot_candlestick_with_bollinger(df, save_path=None):
         bottom=down["Close"],
         color=col2,
     )
-
-    # ax.plot(df["Date"], df["Close"], color="k", label="Close Price")
 
     # Bollinger Bands
     ax.plot(
@@ -164,6 +165,33 @@ def plot_candlestick_with_bollinger(df, save_path=None):
         linewidth=0.3,
     )
 
+    # Calculate RSI
+    delta = df["Close"].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+    rs = gain / loss
+    rsi = 100 - (100 / (1 + rs))
+
+    ax_indicator.plot(df["Date"], rsi, label="RSI", color="b")
+
+    # Calculate Stochastic Oscillator and Plot on ax_indicator
+    low_min = df["Low"].rolling(window=14).min()
+    high_max = df["High"].rolling(window=14).max()
+    k = 100 * ((df["Close"] - low_min) / (high_max - low_min))
+    ax_indicator.plot(df["Date"], k, label="Stochastic %K", color="g")
+
+    # Common indicators for ax_indicator
+    ax_indicator.axhline(80, linestyle="--", linewidth=1, color="grey")
+    ax_indicator.axhline(20, linestyle="--", linewidth=1, color="grey")
+    ax_indicator.set_title("RSI and Stochastic Indicators")
+    ax_indicator.set_ylim([0, 100])
+    ax_indicator.legend(loc="upper left")
+
+    # Hide x-tick labels on the bottom subplot
+    ax_indicator.tick_params(
+        axis="x", which="both", bottom=False, top=False, labelbottom=False
+    )
+
     # Add labels and title
     ax.set_xlabel("Date")
     ax.set_ylabel("Price")
@@ -186,11 +214,6 @@ def plot_candlestick_with_bollinger(df, save_path=None):
 
     date_format = DateFormatter("%H:%M", tz=df["Date"].dt.tz)
     ax.xaxis.set_major_formatter(date_format)
-
-    # Formatting and legend
-    # date_format = DateFormatter("%d-%b")
-    # date_format = DateFormatter("%H:%M")
-    # ax.xaxis.set_major_formatter(date_format)
 
     formatter = FuncFormatter(format_to_dollars)
     ax.yaxis.set_major_formatter(formatter)

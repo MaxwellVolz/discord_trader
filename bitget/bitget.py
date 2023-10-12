@@ -112,7 +112,6 @@ class BitGet:
                             )
 
                     elif action_type == "update":
-                        print("Received update:")
                         for candle in parsed_message["data"]:
                             print(f"Timestamp: {candle[0]}, Open: {candle[1]}, ...")
 
