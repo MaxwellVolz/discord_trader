@@ -9,6 +9,9 @@ import json
 from dotenv import load_dotenv
 from asyncio import Condition
 
+# Load environment variables from .env file
+load_dotenv()
+
 
 class BitGet:
     def __init__(self) -> None:
