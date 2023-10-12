@@ -5,6 +5,7 @@ import hashlib
 import base64
 import asyncio
 import websockets
+import json
 from dotenv import load_dotenv
 
 
@@ -20,6 +21,9 @@ class BitGet:
         self.subscription_count = 0
         self.connection_timestamps = []
         self.subscription_timestamps = []
+
+        self.snapshot_received = False
+        self.is_subscribed = False
 
     # Remember to call check_rate_limits before making additional
     # subscriptions in other parts of your code to ensure
@@ -59,9 +63,17 @@ class BitGet:
         return timestamp, signature
 
     async def send_ping(self, ws):
-        while True:
+        while not self.is_subscribed:  # Only send pings if not subscribed
             await ws.send("ping")
             await asyncio.sleep(30)
+
+    async def unsubscribe(self, ws):
+        unsubscribe_msg = {
+            "op": "unsubscribe",
+            "args": [{"instType": "mc", "channel": "candle1m", "instId": "BTCUSDT"}],
+        }
+        await ws.send(json.dumps(unsubscribe_msg))
+        print("Unsubscribed successfully.")
 
     async def listen(self, ws):
         while True:
@@ -69,10 +81,45 @@ class BitGet:
             if message == "pong":
                 continue
             else:
-                print(f"Received: {message}")
-                # Your logic here based on received data
+                try:
+                    parsed_message = json.loads(message)
+                    event_type = parsed_message.get("event", "")
+                    if event_type == "subscribe":
+                        self.is_subscribed = True
+                        print(
+                            f"Successfully subscribed to {parsed_message['arg']['channel']} for {parsed_message['arg']['instId']}"
+                        )
 
-    async def connect(self):
+                    elif event_type == "error":
+                        print(
+                            f"Error: {parsed_message['msg']} (Code: {parsed_message['code']})"
+                        )
+
+                    # Handle action-based messages
+                    action_type = parsed_message.get("action", "")
+
+                    if action_type == "snapshot":
+                        self.snapshot_received = True
+                        print("Received snapshot:")
+                        for candle in parsed_message["data"]:
+                            print(
+                                f"Timestamp: {candle[0]}, Open: {candle[1]}, High: {candle[2]}, Low: {candle[3]}, Close: {candle[4]}, Volume: {candle[5]}"
+                            )
+
+                    elif action_type == "update":
+                        print("Received update:")
+                        for candle in parsed_message["data"]:
+                            print(
+                                f"Timestamp: {candle[0]}, Open: {candle[1]}, High: {candle[2]}, Low: {candle[3]}, Close: {candle[4]}, Volume: {candle[5]}"
+                            )
+
+                    else:
+                        print(f"Received: {parsed_message}")
+
+                except json.JSONDecodeError:
+                    print(f"Could not parse message: {message}")
+
+    async def connect(self, duration=30):
         self.check_rate_limits()
 
         timestamp, signature = self.generate_signature()
@@ -96,16 +143,31 @@ class BitGet:
             self.subscription_timestamps.append(time.time())
             self.subscription_count += 1
 
+            # Subscribe to candlestick data for BTCUSDT with 1m interval
+            subscription_msg = {
+                "op": "subscribe",
+                "args": [
+                    {"instType": "mc", "channel": "candle1m", "instId": "BTCUSDT"}
+                ],
+            }
+
+            await ws.send(json.dumps(subscription_msg))
+
             listener_task = asyncio.create_task(self.listen(ws))
             ping_task = asyncio.create_task(self.send_ping(ws))
 
-            await listener_task
-            await ping_task
+            await asyncio.sleep(duration)  # Sleep for the specified duration
+
+            listener_task.cancel()
+            ping_task.cancel()
+            await self.unsubscribe(ws)  # Unsubscribe before exiting
+
+            await asyncio.gather(listener_task, ping_task, return_exceptions=True)
 
     def get_data(self, start_timestamp, end_timestamp):
         pass  # Your implementation here
 
 
 # Initialize and connect
-# bitget = BitGet()
-# asyncio.get_event_loop().run_until_complete(bitget.connect())
+bitget = BitGet()
+asyncio.get_event_loop().run_until_complete(bitget.connect(duration=10))
