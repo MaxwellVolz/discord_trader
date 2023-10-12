@@ -1,0 +1,32 @@
+2023-10-11 17:40:46,245 - INFO - Starting the Discord bot...
+2023-10-11 17:40:46,246 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:40:46,248 - INFO - logging in using static token
+2023-10-11 17:40:47,306 - INFO - Shard ID None has connected to Gateway (Session ID: 625dfeb90ce4156bb83d7605c9a2aa45).
+2023-10-11 17:41:06,025 - ERROR - An error occurred: Command raised an exception: NameError: name 'asyncio' is not defined
+2023-10-11 17:43:06,922 - INFO - Starting the Discord bot...
+2023-10-11 17:43:06,923 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:43:06,924 - INFO - logging in using static token
+2023-10-11 17:43:07,839 - INFO - Shard ID None has connected to Gateway (Session ID: 7e8e8608e7edbd6c089929728e8df64a).
+2023-10-11 17:43:17,291 - ERROR - An error occurred: Command raised an exception: RuntimeError: This event loop is already running
+2023-10-11 17:44:26,543 - INFO - Starting the Discord bot...
+2023-10-11 17:44:26,543 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:44:26,545 - INFO - logging in using static token
+2023-10-11 17:44:27,470 - INFO - Shard ID None has connected to Gateway (Session ID: 644022d1654e1356e0f5633e88fa7f73).
+2023-10-11 17:45:01,804 - ERROR - An error occurred: Command raised an exception: TypeError: plot_candlestick_with_bollinger() got an unexpected keyword argument 'save_path'
+2023-10-11 17:47:52,932 - INFO - Starting the Discord bot...
+2023-10-11 17:47:52,932 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:47:52,934 - INFO - logging in using static token
+2023-10-11 17:47:53,684 - INFO - Shard ID None has connected to Gateway (Session ID: dc66e902f9cf675789f08b48acc1f818).
+2023-10-11 17:54:59,860 - INFO - Starting the Discord bot...
+2023-10-11 17:54:59,861 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:55:09,923 - INFO - Starting the Discord bot...
+2023-10-11 17:55:09,924 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:58:50,270 - INFO - Starting the Discord bot...
+2023-10-11 17:58:50,271 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 17:58:50,272 - INFO - logging in using static token
+2023-10-11 17:58:51,428 - INFO - Shard ID None has connected to Gateway (Session ID: bb0f3bce8d4649065ce5d254480eed1c).
+2023-10-11 18:01:55,363 - INFO - Starting the Discord bot...
+2023-10-11 18:01:55,363 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-11 18:01:55,365 - INFO - logging in using static token
+2023-10-11 18:01:56,254 - INFO - Shard ID None has connected to Gateway (Session ID: ddda2ff5024b6374bb5a32e8efe20ab1).
+2023-10-11 18:50:39,082 - INFO - Shard ID None has successfully RESUMED session ddda2ff5024b6374bb5a32e8efe20ab1.

@@ -1,8 +1,14 @@
 import logging
 import os
-from discord import Intents
+from discord import Intents, File, Embed
 from discord.ext import commands
 from bot.data_bot import DataBot
+from bitget.bitget import BitGet
+from plot import (
+    parse_snapshot_to_dataframe,
+    plot_candlestick_with_bollinger,
+)  # Import the utility functions
+import asyncio
 
 from datetime import datetime, timedelta
 import re
@@ -22,6 +28,57 @@ bot = commands.Bot(
     description="The coolest crypto plotting bot around!",
     intents=intents,
 )
+
+
+# @bot.command(name="help")
+# async def help_command(ctx):
+#     help_embed = Embed(
+#         title="🤖 Cryptobot Help Center 🤖",
+#         description="Welcome to the ultimate crypto plotting bot! Here's how you can use me:",
+#         color=0x00FF00,
+#     )
+
+#     # help_embed.add_field(
+#     #     name="📊 Plotting Historical Data 📈",
+#     #     value="Use `!plot MM-DD` to plot historical data for a given date. Example: `!plot 01-01`.",
+#     #     inline=False,
+#     # )
+
+#     help_embed.add_field(
+#         name="🐙 Kraken Feature 🐙",
+#         value="Use `!kraken` to plot real-time data from Kraken. Watch out, the Kraken is unleashed!",
+#         inline=False,
+#     )
+
+#     help_embed.add_field(
+#         name="🚀 Upcoming Features 🌠",
+#         value="📊 Plotting Historical Data 📈 Setting Trigger : 📉Alerts s🚨!",
+#         inline=False,
+#     )
+
+#     help_embed.set_footer(text="For more details, text me lol.")
+
+#     await ctx.send(embed=help_embed)
+
+
+@bot.command(name="kraken")
+async def kraken(ctx):
+    await ctx.send("🔥 Yo whats Kraken 🐙 Hold please ⏳")
+
+    # Initialize BitGet and connect
+    bitget = BitGet()
+    await bitget.connect()  # Add 'await' here
+
+    # Get the snapshot and parse it into a DataFrame
+    snapshot = bitget.get_candle_data()
+    df = parse_snapshot_to_dataframe(snapshot)
+
+    # Generate the plot and save it as a PNG file
+    file_path = "kraken_plot.png"  # You can name this file as you like
+    plot_candlestick_with_bollinger(df, save_path=file_path)
+
+    # Send the PNG file in the Discord channel
+    await ctx.send("📊:", file=File(file_path))
 
 
 @bot.command(aliases=["plot"])

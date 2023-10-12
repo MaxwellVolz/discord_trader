@@ -4,13 +4,61 @@ from matplotlib.dates import date2num, DateFormatter
 from matplotlib.ticker import FuncFormatter
 from datetime import datetime, timedelta
 import os
+from bitget.bitget import BitGet
+import asyncio
+from bot.utils import calc_bollinger_bands, calc_RSI, calc_stochastic
 
 
 def format_to_dollars(x, pos):
     return f"${x:,.0f}"
 
 
-def plot_candlestick_with_bollinger(df, plot_name=None):
+def parse_snapshot_to_dataframe(snapshot):
+    columns = [
+        "Timestamp",
+        "Price_open",
+        "Price_high",
+        "Price_low",
+        "Price_close",
+        "Volume_sum",
+    ]
+    df = pd.DataFrame(snapshot, columns=columns)
+
+    df["Timestamp"] = df["Timestamp"].astype(
+        "int64"
+    )  # Cast to integer before converting to datetime
+    df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="ms")
+
+    df.set_index("Timestamp", inplace=True)
+
+    # Rename columns
+    df.rename(
+        columns={
+            "Price_open": "Open",
+            "Price_high": "High",
+            "Price_low": "Low",
+            "Price_close": "Close",
+            "Volume_sum": "Volume",
+        },
+        inplace=True,
+    )
+
+    # Convert to numeric types
+    df["Open"] = pd.to_numeric(df["Open"], errors="coerce")
+    df["High"] = pd.to_numeric(df["High"], errors="coerce")
+    df["Low"] = pd.to_numeric(df["Low"], errors="coerce")
+    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
+    df["Volume"] = pd.to_numeric(df["Volume"], errors="coerce")
+
+    # Calculate Bollinger Bands, RSI, and Stochastic (assuming you have these utility functions)
+    df = calc_bollinger_bands(df)
+    df = calc_RSI(df)
+    df = calc_stochastic(df)
+
+    return df
+
+
+def plot_candlestick_with_bollinger(df, save_path=None):
     # Explicit copy of the DataFrame slice
     df = df.copy()
     df["Date"] = df.index
@@ -152,17 +200,15 @@ def plot_candlestick_with_bollinger(df, plot_name=None):
     # Set plot output size
     fig.set_size_inches(30, 20)
 
-    if plot_name is None:
+    if save_path is None:
         plt.show()
         return None
     else:
         # Save the plot
         if not os.path.exists("plots"):
             os.makedirs("plots")
-        file_name = (
-            f"plots/Bollinger_Plot_{df['Date'].iloc[-1].strftime('%Y%m%d_%H%M%S')}.png"
-        )
-        print(f"Saving plot: {file_name}")
-        plt.savefig(file_name)
 
-        return file_name
+        print(f"Saving plot: {save_path}")
+        plt.savefig(save_path)
+
+        return save_path

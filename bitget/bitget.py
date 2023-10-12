@@ -7,6 +7,7 @@ import asyncio
 import websockets
 import json
 from dotenv import load_dotenv
+from asyncio import Condition
 
 
 class BitGet:
@@ -24,6 +25,9 @@ class BitGet:
 
         self.snapshot_received = False
         self.is_subscribed = False
+
+        self.candle_data = []
+        self.update_received = Condition()
 
     # Remember to call check_rate_limits before making additional
     # subscriptions in other parts of your code to ensure
@@ -100,6 +104,7 @@ class BitGet:
 
                     if action_type == "snapshot":
                         self.snapshot_received = True
+                        self.candle_data = parsed_message["data"]
                         print("Received snapshot:")
                         for candle in parsed_message["data"]:
                             print(
@@ -109,9 +114,16 @@ class BitGet:
                     elif action_type == "update":
                         print("Received update:")
                         for candle in parsed_message["data"]:
-                            print(
-                                f"Timestamp: {candle[0]}, Open: {candle[1]}, High: {candle[2]}, Low: {candle[3]}, Close: {candle[4]}, Volume: {candle[5]}"
-                            )
+                            print(f"Timestamp: {candle[0]}, Open: {candle[1]}, ...")
+
+                        # Check if the new timestamp matches the last in self.candle_data
+                        if self.candle_data and self.candle_data[-1][0] == candle[0]:
+                            self.candle_data[-1] = candle
+                        else:
+                            self.candle_data.append(candle)
+                            # Notify that an update has been received
+                            async with self.update_received:
+                                self.update_received.notify_all()
 
                     else:
                         print(f"Received: {parsed_message}")
@@ -119,7 +131,7 @@ class BitGet:
                 except json.JSONDecodeError:
                     print(f"Could not parse message: {message}")
 
-    async def connect(self, duration=30):
+    async def connect(self):
         self.check_rate_limits()
 
         timestamp, signature = self.generate_signature()
@@ -156,7 +168,8 @@ class BitGet:
             listener_task = asyncio.create_task(self.listen(ws))
             ping_task = asyncio.create_task(self.send_ping(ws))
 
-            await asyncio.sleep(duration)  # Sleep for the specified duration
+            async with self.update_received:
+                await self.update_received.wait()
 
             listener_task.cancel()
             ping_task.cancel()
@@ -164,10 +177,10 @@ class BitGet:
 
             await asyncio.gather(listener_task, ping_task, return_exceptions=True)
 
-    def get_data(self, start_timestamp, end_timestamp):
-        pass  # Your implementation here
+    def get_candle_data(self):
+        return self.candle_data
 
 
 # Initialize and connect
-bitget = BitGet()
-asyncio.get_event_loop().run_until_complete(bitget.connect(duration=10))
+# bitget = BitGet()
+# asyncio.get_event_loop().run_until_complete(bitget.connect(duration=10))
