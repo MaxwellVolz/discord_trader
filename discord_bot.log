@@ -39,3 +39,7 @@
 2023-10-12 06:13:32,032 - INFO - Shard ID None has successfully RESUMED session ddda2ff5024b6374bb5a32e8efe20ab1.
 2023-10-12 08:59:38,957 - INFO - Shard ID None has successfully RESUMED session ddda2ff5024b6374bb5a32e8efe20ab1.
 2023-10-12 10:43:47,023 - INFO - Shard ID None has successfully RESUMED session ddda2ff5024b6374bb5a32e8efe20ab1.
+2023-10-12 11:38:49,110 - INFO - Starting the Discord bot...
+2023-10-12 11:38:49,110 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-12 11:38:49,112 - INFO - logging in using static token
+2023-10-12 11:38:50,005 - INFO - Shard ID None has connected to Gateway (Session ID: 4c6ac2d77a567408d52bf320bc938039).

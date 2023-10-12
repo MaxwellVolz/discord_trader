@@ -111,6 +111,10 @@ class BitGet:
                                 f"Timestamp: {candle[0]}, Open: {candle[1]}, High: {candle[2]}, Low: {candle[3]}, Close: {candle[4]}, Volume: {candle[5]}"
                             )
 
+                        # TODO: stops here
+                        async with self.update_received:
+                            self.update_received.notify_all()
+
                     elif action_type == "update":
                         for candle in parsed_message["data"]:
                             print(f"Timestamp: {candle[0]}, Open: {candle[1]}, ...")
