@@ -49,30 +49,42 @@ class Trader:
         self.entry_point_callback = entry_point_callback
 
     async def connect(self):
-        # Add this line to keep track of connections
-        self.connection_timestamps.append(time.time())
+        retries = 0
 
-        self.check_rate_limits()
-        timestamp, signature = self.generate_signature()
-        headers = {
-            "apiKey": self.api_key,
-            "passphrase": self.passphrase,
-            "timestamp": timestamp,
-            "sign": signature,
-        }
+        while retries < 5:
+            try:
+                # Add this line to keep track of connections
+                self.connection_timestamps.append(time.time())
 
-        self.ws = await websockets.connect(self.uri, extra_headers=headers)
+                self.check_rate_limits()
+                timestamp, signature = self.generate_signature()
+                headers = {
+                    "apiKey": self.api_key,
+                    "passphrase": self.passphrase,
+                    "timestamp": timestamp,
+                    "sign": signature,
+                }
 
-        try:
-            await self.subscribe()
-            asyncio.create_task(self.send_ping())
-            while True:
-                msg = await self.ws.recv()
-                await self.handle_message(msg)
-        except Exception as e:
-            trader_logger.error(f"Error occurred: {e}")
-        finally:
-            await self.ws.close()
+                self.ws = await websockets.connect(self.uri, extra_headers=headers)
+
+                try:
+                    await self.subscribe()
+                    asyncio.create_task(self.send_ping())
+
+                    # Use async for to handle incoming messages
+                    async for msg in self.ws:
+                        await self.handle_message(msg)
+
+                except Exception as e:
+                    trader_logger.error(f"Error occurred: {e}")
+
+                finally:
+                    await self.ws.close()
+
+            except (websockets.exceptions.ConnectionClosed, ConnectionError) as e:
+                trader_logger.error(f"Connection failed: {e}. Retrying...")
+                retries += 1
+                await asyncio.sleep(5)  # Wait 5 seconds before retrying
 
     async def send_ping(self):
         await self.ws.send("ping")
