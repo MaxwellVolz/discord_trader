@@ -29,13 +29,20 @@ bot = commands.Bot(
 trader = None  # Initialize trader to None
 
 
+async def entry_point_alert(message: str):
+    channel = bot.get_channel(
+        1157023192024621126
+    )  # Replace with your actual Discord channel ID
+    await channel.send(message)
+
+
 @bot.command(name="kraken")
 async def kraken(ctx):
     global trader
     await ctx.send("🥚 Initializing Kraken bot🥚. Hold please ⏳")
 
     # Initialize Trader and connect
-    trader = Trader()
+    trader = Trader(entry_point_callback=entry_point_alert)
     asyncio.create_task(trader.connect())
 
     await ctx.send("🐣 Kraken bot Initialized 🐙")
