@@ -43,3 +43,10 @@
 2023-10-12 11:38:49,110 - WARNING - PyNaCl is not installed, voice will NOT be supported
 2023-10-12 11:38:49,112 - INFO - logging in using static token
 2023-10-12 11:38:50,005 - INFO - Shard ID None has connected to Gateway (Session ID: 4c6ac2d77a567408d52bf320bc938039).
+2023-10-12 15:12:47,417 - INFO - Starting the Discord bot...
+2023-10-12 15:12:47,418 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2023-10-12 15:12:47,419 - INFO - logging in using static token
+2023-10-12 15:12:48,224 - INFO - Shard ID None has connected to Gateway (Session ID: cfe756007b68db5bb4e3e7a305be7d38).
+2023-10-12 16:26:05,036 - INFO - Shard ID None has successfully RESUMED session cfe756007b68db5bb4e3e7a305be7d38.
+2023-10-12 16:57:03,496 - INFO - Shard ID None has successfully RESUMED session cfe756007b68db5bb4e3e7a305be7d38.
+2023-10-12 17:33:24,803 - INFO - Shard ID None has successfully RESUMED session cfe756007b68db5bb4e3e7a305be7d38.

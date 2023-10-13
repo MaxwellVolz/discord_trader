@@ -4,10 +4,7 @@ from discord import Intents, File, Embed
 from discord.ext import commands
 from bot.data_bot import DataBot
 from bitget.bitget import BitGet
-from plot import (
-    parse_snapshot_to_dataframe,
-    plot_candlestick_with_bollinger,
-)  # Import the utility functions
+from plot import plot_candlestick_with_bollinger
 import asyncio
 
 from datetime import datetime, timedelta
@@ -52,7 +49,7 @@ bot = commands.Bot(
 
 #     help_embed.add_field(
 #         name="🚀 Upcoming Features 🌠",
-#         value="📊 Plotting Historical Data 📈 Setting Trigger : 📉Alerts s🚨!",
+#         value="📊 Plotting Historical Data 📈 Setting Trigger::  rtsssss s🚨!",
 #         inline=False,
 #     )
 
@@ -63,7 +60,7 @@ bot = commands.Bot(
 
 @bot.command(name="kraken")
 async def kraken(ctx):
-    await ctx.send("🔥 Yo whats Kraken 🐙 Hold please ⏳")
+    await ctx.send("🔥 Yo whats Krakennnnn🐙 Hold please ⏳")
 
     # Initialize BitGet and connect
     bitget = BitGet()
@@ -71,11 +68,12 @@ async def kraken(ctx):
 
     # Get the snapshot and parse it into a DataFrame
     snapshot = bitget.get_candle_data()
-    df = parse_snapshot_to_dataframe(snapshot)
 
     # Generate the plot and save it as a PNG file
     file_path = "kraken_plot.png"  # You can name this file as you like
-    plot_candlestick_with_bollinger(df, save_path=file_path)
+    plot_candlestick_with_bollinger(snapshot, save_path=file_path)
+
+    # bitget.backtest_on_snapshot()
 
     # Send the PNG file in the Discord channel
     await ctx.send("📊:", file=File(file_path))

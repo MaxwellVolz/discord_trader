@@ -5,3 +5,5 @@ output/old
 output/*csv
 
 *.pyc
+bitget/*.pyc
+bitget/__pycache__/

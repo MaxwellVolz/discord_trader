@@ -2,60 +2,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.ticker import FuncFormatter
 import os
-from bot.utils import calc_bollinger_bands, calc_RSI, calc_stochastic
 from matplotlib.dates import DateFormatter
 from matplotlib.gridspec import GridSpec
 from matplotlib import style
-from matplotlib.patches import Rectangle
 
 
 def format_to_dollars(x, pos):
     return f"${x:,.0f}"
-
-
-def parse_snapshot_to_dataframe(snapshot):
-    columns = [
-        "Timestamp",
-        "Price_open",
-        "Price_high",
-        "Price_low",
-        "Price_close",
-        "Volume_sum",
-    ]
-    df = pd.DataFrame(snapshot, columns=columns)
-
-    df["Timestamp"] = df["Timestamp"].astype(
-        "int64"
-    )  # Cast to integer before converting to datetime
-    df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="ms")
-
-    df.set_index("Timestamp", inplace=True)
-
-    # Rename columns
-    df.rename(
-        columns={
-            "Price_open": "Open",
-            "Price_high": "High",
-            "Price_low": "Low",
-            "Price_close": "Close",
-            "Volume_sum": "Volume",
-        },
-        inplace=True,
-    )
-
-    # Convert to numeric types
-    df["Open"] = pd.to_numeric(df["Open"], errors="coerce")
-    df["High"] = pd.to_numeric(df["High"], errors="coerce")
-    df["Low"] = pd.to_numeric(df["Low"], errors="coerce")
-    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
-    df["Volume"] = pd.to_numeric(df["Volume"], errors="coerce")
-
-    # Calculate Bollinger Bands, RSI, and Stochastic (assuming you have these utility functions)
-    df = calc_bollinger_bands(df)
-    df = calc_RSI(df)
-    df = calc_stochastic(df)
-
-    return df
 
 
 def plot_bollinger_bands(ax, df, labels_colors):

@@ -1,9 +1,6 @@
 import asyncio
 from bitget.bitget import BitGet
-from plot import (
-    parse_snapshot_to_dataframe,
-    plot_candlestick_with_bollinger,
-)  # Import the utility functions
+from plot import plot_candlestick_with_bollinger
 
 
 async def main():
@@ -13,10 +10,11 @@ async def main():
 
     # Get the snapshot and parse it into a DataFrame
     snapshot = bitget.get_candle_data()
-    df = parse_snapshot_to_dataframe(snapshot)
 
     # Generate the plot and save it as a PNG file
-    plot_candlestick_with_bollinger(df)
+    plot_candlestick_with_bollinger(snapshot, save_path="kraken_plot.png")
+
+    bitget.backtest_on_snapshot()
 
     # Send the PNG file in the Discord channel
     # (you can add your Discord bot sending logic here)
