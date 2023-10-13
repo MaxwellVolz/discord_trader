@@ -6,7 +6,7 @@ import hmac
 import hashlib
 import base64
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import os
 from dotenv import load_dotenv
@@ -114,8 +114,7 @@ class Trader:
             if new_timestamp not in existing_timestamps:
                 self.data.append(new_data)
                 self.df = convert_to_dataframe(self.data)
-                human_time = datetime.fromtimestamp(new_timestamp)
-                trader_logger.info(f"New update, df regenerated: {human_time}")
+                trader_logger.info(f"New update, df regenerated: {new_timestamp}")
 
             await self.maintain_data_size()
         else:
@@ -128,6 +127,21 @@ class Trader:
     def get_data(self):
         # print(self.df.describe())
         return self.df
+
+    def get_data_last_n_hours(self, hours):
+        # Get the latest timestamp in the DataFrame
+        latest_timestamp = self.df["Timestamp"].max()
+
+        # Convert the number of hours into a timedelta
+        time_delta = timedelta(hours=hours)
+
+        # Calculate the oldest data point that we are interested in based on the latest timestamp
+        oldest_time_of_interest = latest_timestamp - time_delta
+
+        # Filter the DataFrame to only include data from the last 'hours' hours
+        filtered_df = self.df[self.df["Timestamp"] >= oldest_time_of_interest]
+
+        return filtered_df
 
     def generate_signature(self):
         timestamp = str(int(time.time()))

@@ -97,20 +97,11 @@ def plot_candlestick_with_bollinger(df, save_path=None, save_csv=False):
     }
     plot_bollinger_bands(ax, df, bollinger_labels_colors)
 
-    # Calculate RSI
-    delta = df["Close"].diff()
-    gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
-    rs = gain / loss
-    rsi = 100 - (100 / (1 + rs))
+    # RSI
+    ax_indicator.plot(df["Date"], df["RSI"], label="RSI", color="b")
 
-    ax_indicator.plot(df["Date"], rsi, label="RSI", color="b")
-
-    # Calculate Stochastic Oscillator and Plot on ax_indicator
-    low_min = df["Low"].rolling(window=14).min()
-    high_max = df["High"].rolling(window=14).max()
-    k = 100 * ((df["Close"] - low_min) / (high_max - low_min))
-    ax_indicator.plot(df["Date"], k, label="Stochastic %K", color="g")
+    # Stochastic
+    ax_indicator.plot(df["Date"], df["Stochastic"], label="Stochastic %K", color="g")
 
     # Common indicators for ax_indicator
     ax_indicator.axhline(80, linestyle="--", linewidth=1, color="grey")

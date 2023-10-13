@@ -1,0 +1,3 @@
+2023-10-13 14:55:13,974 - ERROR - An error occurred: Command raised an exception: KeyError: 'timestamp'
+2023-10-13 14:59:41,426 - ERROR - An error occurred: Command raised an exception: KeyError: 'timestamp'
+2023-10-13 15:00:56,410 - ERROR - An error occurred: Converting to "int" failed for parameter "hours".

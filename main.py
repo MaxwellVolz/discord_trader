@@ -32,13 +32,13 @@ trader = None  # Initialize trader to None
 @bot.command(name="kraken")
 async def kraken(ctx):
     global trader
-    await ctx.send("🔥 Initializing Kraken bot 🐙. Hold please ⏳")
+    await ctx.send("🥚 Initializing Kraken bot🥚. Hold please ⏳")
 
     # Initialize Trader and connect
     trader = Trader()
     asyncio.create_task(trader.connect())
 
-    await ctx.send("🔥 Kraken bot Initialized 🐙")
+    await ctx.send("🐣 Kraken bot Initialized 🐙")
 
     # trading_task = asyncio.create_task(trader.connect())
     # Wait for the trading task to complete (if ever)
@@ -46,25 +46,26 @@ async def kraken(ctx):
 
 
 @bot.command(name="plot")
-async def plot(ctx):
+async def plot(ctx, hours: int = 8):
     global trader
     if trader is None:
         await ctx.send("❌ Kraken bot is not initialized. Please run !kraken first.")
         return
 
-    await ctx.send("🔥 Generating the plot. Hold please ⏳")
-
-    # Wait for a few seconds for the trading data to populate
-    await asyncio.sleep(5)  # adjust the time as needed
+    await ctx.send(f"📊 Generating the plot for the last {hours} hours. Hold please ⏳")
 
     # Fetch and print the trading data
-    data = trader.get_data()
+    # data = trader.get_data()
+
+    # Fetch and filter the trading data based on the number of hours
+    data = trader.get_data_last_n_hours(hours)
 
     # Generate the plot and save it as a PNG file
     file_path = "kraken_plot.png"
     plot_candlestick_with_bollinger(data, save_path=file_path)
 
-    await ctx.send("📊 Here's your plot:", file=File(file_path))
+    # await ctx.send("", file=File(file_path))
+    await ctx.send(file=File(file_path))
 
 
 @bot.event

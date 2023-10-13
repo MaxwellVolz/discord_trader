@@ -1,3 +1,35 @@
 2023-10-13 14:40:13,244 - INFO - Snapshot not received yet.
 2023-10-13 14:40:13,354 - INFO - Snapshot not received yet.
 2023-10-13 14:40:13,583 - INFO - Snapshot received.
+2023-10-13 14:55:00,079 - INFO - Snapshot not received yet.
+2023-10-13 14:55:00,187 - INFO - Snapshot not received yet.
+2023-10-13 14:55:00,356 - INFO - Snapshot received.
+2023-10-13 14:55:00,692 - INFO - New update, df regenerated: 1697234100000
+2023-10-13 14:56:01,418 - INFO - New update, df regenerated: 1697234160000
+2023-10-13 14:59:34,534 - INFO - Snapshot not received yet.
+2023-10-13 14:59:34,644 - INFO - Snapshot not received yet.
+2023-10-13 14:59:34,798 - INFO - Snapshot received.
+2023-10-13 15:00:01,466 - INFO - New update, df regenerated: 1697234400000
+2023-10-13 15:00:39,296 - INFO - Snapshot not received yet.
+2023-10-13 15:00:39,406 - INFO - Snapshot not received yet.
+2023-10-13 15:00:39,559 - INFO - Snapshot received.
+2023-10-13 15:01:01,507 - INFO - New update, df regenerated: 1697234460000
+2023-10-13 15:02:00,671 - INFO - New update, df regenerated: 1697234520000
+2023-10-13 15:02:42,350 - ERROR - Error occurred: no close frame received or sent
+2023-10-13 15:07:56,898 - INFO - Snapshot not received yet.
+2023-10-13 15:07:56,900 - INFO - Snapshot not received yet.
+2023-10-13 15:07:57,075 - INFO - Snapshot received.
+2023-10-13 15:08:01,508 - INFO - New update, df regenerated: 1697234880000
+2023-10-13 15:08:29,280 - INFO - Snapshot not received yet.
+2023-10-13 15:08:29,392 - INFO - Snapshot not received yet.
+2023-10-13 15:08:29,555 - INFO - Snapshot received.
+2023-10-13 15:08:32,420 - INFO - Snapshot not received yet.
+2023-10-13 15:08:32,530 - INFO - Snapshot not received yet.
+2023-10-13 15:08:32,547 - INFO - Snapshot received.
+2023-10-13 15:09:00,861 - INFO - New update, df regenerated: 1697234940000
+2023-10-13 15:09:00,876 - INFO - New update, df regenerated: 1697234940000
+2023-10-13 15:10:01,226 - INFO - New update, df regenerated: 1697235000000
+2023-10-13 15:10:01,253 - INFO - New update, df regenerated: 1697235000000
+2023-10-13 15:10:19,790 - INFO - Snapshot not received yet.
+2023-10-13 15:10:19,901 - INFO - Snapshot not received yet.
+2023-10-13 15:10:20,080 - INFO - Snapshot received.
