@@ -1,41 +1,39 @@
 import asyncio
-from bitget.bitget import BitGet
+
+from bitget.trader import Trader
 from plot import plot_candlestick_with_bollinger
 
 
 async def main():
-    # Initialize BitGet and connect
-    bitget = BitGet()
-    await bitget.connect(5)  # 'await' is valid because we're inside an async function
+    trader = Trader()
 
-    # Get the snapshot df
-    snapshot = bitget.get_data()
+    # Start the trading connection as a background task
+    trading_task = asyncio.create_task(trader.connect())
 
-    print("Plotting first candles...")
+    # Wait for a few seconds for the trading data to populate
+    await asyncio.sleep(5)  # adjust the time as needed
 
-    # Generate the plot and save it as a PNG file
-    plot_candlestick_with_bollinger(snapshot, save_path="kraken_plot.png")
+    # Fetch and print the trading data
+    data = trader.get_data()
+    print("Current Data:", data)
 
-    print("Subscribing to conditions...")
+    plot_candlestick_with_bollinger(data, save_path="kraken_plot.png", save_csv=True)
 
-    duration = 60
-    # for example, subscribe for 300 seconds with no delay in reporting the
-    # conditions; they're reported in real-time!
-    await bitget.subscribe_conditions(duration)
+    await asyncio.sleep(60)  # adjust the time as needed
 
-    # Get the snapshot df
-    snapshot = bitget.get_data()
+    # Fetch and print the trading data
+    data = trader.get_data()
+    print("Current Data:", data)
 
     # Generate the plot and save it as a PNG file
-    plot_candlestick_with_bollinger(snapshot, save_path="kraken_plot_2.png")
+    plot_candlestick_with_bollinger(data, save_path="kraken_plot2.png")
+
+    # Wait for the trading task to complete (if ever)
+    await trading_task
 
     # Backtest the strategy
     # bitget.backtest_on_snapshot()
 
-    # Send the PNG file in the Discord channel
-    # (you can add your Discord bot sending logic here)
 
-
-# Run the event loop
 if __name__ == "__main__":
     asyncio.run(main())

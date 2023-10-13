@@ -31,64 +31,33 @@ def calc_stochastic(df, window=14):
 
 def convert_to_dataframe(candle_data):
     print("Converting to dataframe...")
-    columns = [
-        "Timestamp",
-        "Price_open",
-        "Price_high",
-        "Price_low",
-        "Price_close",
-        "Volume_sum",
-    ]
-    df = pd.DataFrame(candle_data, columns=columns)
-
-    df["Timestamp"] = df["Timestamp"].astype("int64")
-    df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="ms")
-
-    df.set_index("Timestamp", inplace=True)
-
-    # Rename columns
-    df.rename(
-        columns={
-            "Price_open": "Open",
-            "Price_high": "High",
-            "Price_low": "Low",
-            "Price_close": "Close",
-            "Volume_sum": "Volume",
-        },
-        inplace=True,
+    df = pd.DataFrame(
+        candle_data, columns=["UnixTimestamp", "Open", "High", "Low", "Close", "Volume"]
     )
 
-    # Convert to numeric
-    df["Open"] = pd.to_numeric(df["Open"], errors="coerce")
-    df["High"] = pd.to_numeric(df["High"], errors="coerce")
-    df["Low"] = pd.to_numeric(df["Low"], errors="coerce")
-    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
-    df["Volume"] = pd.to_numeric(df["Volume"], errors="coerce")
+    # Convert to DateTime in PST
+    df["Timestamp"] = pd.to_datetime(df["UnixTimestamp"].astype("int64"), unit="ms")
+    df["Timestamp"] = (
+        df["Timestamp"].dt.tz_localize("UTC").dt.tz_convert("America/Los_Angeles")
+    )
+
+    df.set_index(["UnixTimestamp"], inplace=True)
+
+    df[["Open", "High", "Low", "Close", "Volume"]] = df[
+        ["Open", "High", "Low", "Close", "Volume"]
+    ].apply(pd.to_numeric, errors="coerce")
 
     # Calculate Bollinger Bands, RSI, and Stochastic
     df = calc_bollinger_bands(df)
     df = calc_RSI(df)
     df = calc_stochastic(df)
 
-    print(df.describe())
-
+    # print(df.describe())
     return df
 
 
-def update_dataframe_with_new_data(df, new_candle_data):
-    if len(df) > 540:
-        print("Data exceeds ~9 hours. Dropping oldest row.")
-        df = df.iloc[1:]
-
-    new_df = pd.DataFrame([new_candle_data], columns=df.columns)
-    df = pd.concat([df, new_df]).reset_index(drop=True)
-
-    # Recalculate indicators
-    df = calc_bollinger_bands(df)
-    df = calc_RSI(df)
-    df = calc_stochastic(df)
-
-    return df
+def get_last_timestamp(df):
+    return df.iloc[-1]["Timestamp"]
 
 
 def format_trigger_stats(trigger_stats: dict):

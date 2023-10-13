@@ -6,6 +6,8 @@ from matplotlib.dates import DateFormatter
 from matplotlib.gridspec import GridSpec
 from matplotlib import style
 
+from logger_config import plot_logger
+
 
 def format_to_dollars(x, pos):
     return f"${x:,.0f}"
@@ -22,17 +24,31 @@ def plot_bollinger_bands(ax, df, labels_colors):
         )
 
 
-def plot_candlestick_with_bollinger(df, save_path=None):
+def plot_candlestick_with_bollinger(df, save_path=None, save_csv=False):
     df = df.copy()
+
+    if save_csv:
+        csv_name = f"output/{df['Date'].iloc[0].timestamp()}_{df['Date'].iloc[-1].timestamp()}.csv"
+        df.to_csv(csv_name)
+
+    # Convert index to DateTime if it's not already
+    if not isinstance(df.index, pd.DatetimeIndex):
+        try:
+            df.index = pd.to_datetime(df.index.astype("int64"), unit="ms")
+        except OverflowError:
+            df.index = pd.to_datetime(df.index)
+    # If timezone information is missing, add it
+    if df.index.tz is None:
+        df.index = df.index.tz_localize("UTC").tz_convert("America/Los_Angeles")
+
+    # Create a 'Date' column with the DateTime index values
     df["Date"] = df.index
+
+    # Sort DataFrame by the 'Date' column
     df.sort_values(by="Date", inplace=True)
 
-    df["Date"] = (
-        pd.to_datetime(df["Date"], unit="s")
-        .dt.tz_localize("UTC")
-        .dt.tz_convert("America/Los_Angeles")
-    )
-
+    # Convert the DateTime index to string to avoid matplotlib units confusion
+    # df.index = df.index.strftime("%Y-%m-%d %H:%M:%S")
     style.use("dark_background")
 
     # Setup the plot
@@ -130,7 +146,7 @@ def plot_candlestick_with_bollinger(df, save_path=None):
         if not os.path.exists("plots"):
             os.makedirs("plots")
 
-        print(f"Saving plot: {save_path}")
+        plot_logger.info(f"Saving plot: {save_path}")
         plt.savefig(save_path)
 
         return save_path
