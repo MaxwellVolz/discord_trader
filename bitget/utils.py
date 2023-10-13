@@ -30,6 +30,7 @@ def calc_stochastic(df, window=14):
 
 
 def convert_to_dataframe(candle_data):
+    print("Converting to dataframe...")
     columns = [
         "Timestamp",
         "Price_open",
@@ -69,10 +70,16 @@ def convert_to_dataframe(candle_data):
     df = calc_RSI(df)
     df = calc_stochastic(df)
 
+    print(df.describe())
+
     return df
 
 
 def update_dataframe_with_new_data(df, new_candle_data):
+    if len(df) > 540:
+        print("Data exceeds ~9 hours. Dropping oldest row.")
+        df = df.iloc[1:]
+
     new_df = pd.DataFrame([new_candle_data], columns=df.columns)
     df = pd.concat([df, new_df]).reset_index(drop=True)
 

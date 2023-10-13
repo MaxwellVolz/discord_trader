@@ -4,14 +4,13 @@ import hmac
 import hashlib
 import base64
 import asyncio
+from asyncio import Queue
+
 import websockets
 import json
 from dotenv import load_dotenv
 from asyncio import Condition
 from bitget.utils import (
-    calc_bollinger_bands,
-    calc_RSI,
-    calc_stochastic,
     convert_to_dataframe,
     update_dataframe_with_new_data,
     format_trigger_stats,
@@ -49,6 +48,9 @@ class BitGet:
         self.curr_trigger_stats = None
         self.curr_entry_stats = None
 
+        # pubsub implementation
+        self.message_queue = Queue()
+
     # Remember to call check_rate_limits before making additional
     # subscriptions in other parts of your code to ensure
     # you don't exceed the rate limits.
@@ -83,28 +85,31 @@ class BitGet:
         signature = base64.b64encode(hashed_content).decode()
         return timestamp, signature
 
-    async def send_ping(self, ws):
-        while not self.is_subscribed:  # Only send pings if not subscribed
-            await ws.send("ping")
+    async def send_ping(self):
+        while not self.is_subscribed:
+            await self.ws.send("ping")
             await asyncio.sleep(30)
 
-    async def unsubscribe(self, ws):
+    async def unsubscribe(self):
         unsubscribe_msg = {
             "op": "unsubscribe",
             "args": [{"instType": "mc", "channel": "candle1m", "instId": "BTCUSDT"}],
         }
-        await ws.send(json.dumps(unsubscribe_msg))
+        await self.ws.send(json.dumps(unsubscribe_msg))
         print("Unsubscribed successfully.")
 
-    async def listen(self, ws):
+    async def listen(self):
+        print("Listening...")
         while True:
-            message = await asyncio.wait_for(ws.recv(), timeout=30)
+            message = await asyncio.wait_for(self.ws.recv(), timeout=60)
             if message == "pong":
                 continue
             else:
                 try:
                     parsed_message = json.loads(message)
                     event_type = parsed_message.get("event", "")
+                    action_type = parsed_message.get("action", "")
+
                     if event_type == "subscribe":
                         self.is_subscribed = True
                         print(
@@ -116,38 +121,34 @@ class BitGet:
                             f"Error: {parsed_message['msg']} (Code: {parsed_message['code']})"
                         )
 
-                    action_type = parsed_message.get("action", "")
-
-                    if action_type == "snapshot":
+                    elif action_type == "snapshot":
                         self.snapshot_received = True
                         self.df = convert_to_dataframe(parsed_message["data"])
 
                         if self.check_trigger_conditions(self.df):
                             print("Conditions met on snapshot! Incredible!!")
+                            await self.message_queue.put("Trigger condition met")
 
-                        # TODO: remove this exit on snapshot
-                        async with self.update_received:
-                            self.update_received.notify_all()
+                        self.update_received.set()
 
                     elif action_type == "update":
                         latest_candle = parsed_message["data"][0]
                         # Check if new_candle is different from the last candle in the DataFrame
-                        if latest_candle == self.df.iloc[-1].to_dict():
-                            self.df = update_dataframe_with_new_data(
+                        if (
+                            latest_candle != self.df.iloc[-1].to_dict()
+                        ):  # Changed the condition here to !=
+                            self.df = self.update_dataframe_with_new_data(
                                 self.df, latest_candle
                             )
 
                             if self.trigger_conditions_met:
                                 if self.check_entry_conditions(self.df):
+                                    await self.message_queue.put("Entry condition met")
                                     # self.place_order()
-
                                     self.trigger_conditions_met = False
 
-                                    async with self.update_received:
-                                        self.update_received.notify_all()
-
                             elif self.check_trigger_conditions(self.df):
-                                print("Trigger conditions met!")
+                                await self.message_queue.put("Trigger condition met")
                                 self.trigger_conditions_met = True
                             else:
                                 self.trigger_conditions_met = False
@@ -155,15 +156,10 @@ class BitGet:
                 except json.JSONDecodeError:
                     print(f"Could not parse message: {message}")
 
-    async def connect(self):
+    async def connect(self, duration=60):
         self.check_rate_limits()
-
         timestamp, signature = self.generate_signature()
         uri = "wss://ws.bitget.com/mix/v1/stream"
-
-        # Update rate-limiting variables
-        self.connection_timestamps.append(time.time())
-        self.connection_count += 1
 
         headers = {
             "apiKey": self.api_key,
@@ -172,34 +168,45 @@ class BitGet:
             "sign": signature,
         }
 
-        async with websockets.connect(uri, extra_headers=headers) as ws:
-            print(f"Connected to {uri}")
+        self.ws = await websockets.connect(uri, extra_headers=headers)
+        print(f"Connected to {uri}")
 
-            # For Subscription Limit
-            self.subscription_timestamps.append(time.time())
-            self.subscription_count += 1
+        self.subscription_timestamps.append(time.time())
+        self.subscription_count += 1
 
-            # Subscribe to candlestick data for BTCUSDT with 1m interval
-            subscription_msg = {
-                "op": "subscribe",
-                "args": [
-                    {"instType": "mc", "channel": "candle1m", "instId": "BTCUSDT"}
-                ],
-            }
+        subscription_msg = {
+            "op": "subscribe",
+            "args": [{"instType": "mc", "channel": "candle1m", "instId": "BTCUSDT"}],
+        }
 
-            await ws.send(json.dumps(subscription_msg))
+        await self.ws.send(json.dumps(subscription_msg))
 
-            listener_task = asyncio.create_task(self.listen(ws))
-            ping_task = asyncio.create_task(self.send_ping(ws))
+        listener_task = asyncio.create_task(self.listen())
+        ping_task = asyncio.create_task(self.send_ping())
 
-            async with self.update_received:
-                await self.update_received.wait()
+        try:
+            async with self.update_received:  # Acquire the lock before waiting
+                await asyncio.wait_for(self.update_received.wait(), timeout=duration)
+        except asyncio.TimeoutError:
+            print("Timeout reached, cancelling tasks.")
 
-            listener_task.cancel()
-            ping_task.cancel()
-            await self.unsubscribe(ws)  # Unsubscribe before exiting
+        listener_task.cancel()
+        ping_task.cancel()
 
-            await asyncio.gather(listener_task, ping_task, return_exceptions=True)
+        await self.unsubscribe()
+        await asyncio.gather(listener_task, ping_task, return_exceptions=True)
+
+    def parse_message(self, message):
+        # Implement your own parsing logic
+        return {}
+
+    def is_snapshot_message(self, parsed_message):
+        # Implement your own check for snapshot messages
+        return False
+
+    def is_update_message(self, parsed_message):
+        # Implement your own check for update messages
+        return False
 
     def check_trigger_conditions(self, df_to_check):
         # Check if the last candle touches or penetrates the lower red Bollinger band
@@ -358,7 +365,17 @@ class BitGet:
 
         print(f"Total rows checked: {n_rows}")  # Debug statement
 
-    def get_candle_data(self):
+    async def subscribe_conditions(self, duration):
+        end_time = time.time() + duration
+        while time.time() < end_time:
+            message = await self.message_queue.get()
+            print(f"Received message: {message}")
+            # You can also include additional logic to process the message here
+
+        async with self.update_received:
+            self.update_received.notify_all()
+
+    def get_data(self):
         return self.df
 
 
