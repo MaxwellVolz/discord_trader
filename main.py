@@ -1,5 +1,6 @@
 import logging
 import os
+from dotenv import load_dotenv
 from discord import Intents, File, Embed
 from discord.ext import commands
 from bot.data_bot import DataBot
@@ -9,6 +10,14 @@ import asyncio
 
 from datetime import datetime, timedelta
 import re
+
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the DISCORD_TOKEN variable
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+
 
 logging.basicConfig(
     filename="discord_bot.log",
@@ -132,4 +141,4 @@ async def on_command_error(ctx, error):
         logging.error(f"An error occurred: {str(error)}")
 
 
-bot.run(os.environ["DISCORD_TOKEN"])
+bot.run(DISCORD_TOKEN)

@@ -22,6 +22,9 @@ from bitget.utils import (
 RATE_LIMIT_CONNECTIONS = 100
 RATE_LIMIT_SUBSCRIPTIONS = 240
 
+# Load environment variables from .env file
+load_dotenv()
+
 
 class BitGet:
     def __init__(self) -> None:
