@@ -1,9 +1,11 @@
+# Ignore environment files
 .env
 
+# Ignore specific directories and their contents
 plots/*
-output/old
-output/*csv
+output/old/*
+output/*.csv
 
+# Ignore Python compiled files
+**/__pycache__/
 *.pyc
-bitget/*.pyc
-bitget/__pycache__/
