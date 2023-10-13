@@ -65,6 +65,7 @@ class Trader:
 
         try:
             await self.subscribe()
+            asyncio.create_task(self.send_ping())
             while True:
                 msg = await self.ws.recv()
                 await self.handle_message(msg)
@@ -72,6 +73,10 @@ class Trader:
             trader_logger.error(f"Error occurred: {e}")
         finally:
             await self.ws.close()
+
+    async def send_ping(self):
+        await self.ws.send("ping")
+        await asyncio.sleep(30)
 
     async def subscribe(self):
         subscription_msg = {
@@ -82,7 +87,17 @@ class Trader:
         await self.ws.send(json.dumps(subscription_msg))
 
     async def handle_message(self, msg):
-        parsed_msg = json.loads(msg)
+        trader_logger.debug(f"Received message: {msg}")
+
+        if not msg or msg == "pong":
+            trader_logger.debug("Received empty or pong message. Ignoring.")
+            return
+
+        try:
+            parsed_msg = json.loads(msg)
+        except json.JSONDecodeError as e:
+            trader_logger.exception(f"JSON decoding failed: {e}", exc_info=True)
+            return
         # trader_logger.debug(f"parsed_msg: {parsed_msg}")
         if self.is_subscription_ack(parsed_msg):
             self.subscribed = True

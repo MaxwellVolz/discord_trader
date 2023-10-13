@@ -11,7 +11,7 @@ main_logger.addHandler(main_file_handler)
 
 # Setup for trader.py logger
 trader_logger = logging.getLogger("trader")
-trader_logger.setLevel(logging.INFO)
+trader_logger.setLevel(logging.DEBUG)
 trader_file_handler = logging.FileHandler("trader.log")
 trader_file_handler.setFormatter(
     logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
