@@ -6,6 +6,11 @@ from plot import plot_candlestick_with_bollinger
 import asyncio
 
 from bitget.trader import Trader
+from bitget.utils import (
+    check_entry_conditions,
+    check_trigger_conditions,
+    format_backtest_results,
+)
 
 from logger_config import main_logger
 
@@ -50,6 +55,29 @@ async def kraken(ctx):
     # trading_task = asyncio.create_task(trader.connect())
     # Wait for the trading task to complete (if ever)
     # await trading_task
+
+
+@bot.command(name="backtest")
+async def backtest(ctx, hours: int = 8):
+    global trader  # Assuming trader is a global instance of your Trader class
+    if trader is None:
+        await ctx.send(
+            "❌ Trading bot is not initialized. Please run !initialize or equivalent command first."
+        )
+        return
+
+    await ctx.send(f"⏳ Running backtest for the last {hours} hours. Hold please ⏳")
+
+    data = trader.get_data_last_n_hours(hours)
+
+    # Run backtest
+    results = trader.run_backtest(
+        data, check_entry_conditions, check_trigger_conditions
+    )
+
+    # Format and send the results
+    formatted_results = format_backtest_results(results)
+    await ctx.send(formatted_results)
 
 
 @bot.command(name="plot")

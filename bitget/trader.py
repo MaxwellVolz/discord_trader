@@ -12,7 +12,13 @@ from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 
-from bitget.utils import convert_to_dataframe, format_trigger_stats, format_entry_stats
+from bitget.utils import (
+    convert_to_dataframe,
+    format_trigger_stats,
+    format_entry_stats,
+    check_entry_conditions,
+    check_trigger_conditions,
+)
 
 from logger_config import trader_logger
 
@@ -138,47 +144,46 @@ class Trader:
         if "data" in parsed_msg:
             new_data = parsed_msg["data"][0]
             new_timestamp = new_data[0]
+            new_close_value = new_data[4]
 
-            existing_timestamps = [row[0] for row in self.data]
+            existing_rows = {(row[0], row[4]): row for row in self.data}
 
-            # Debug logging to understand the values
-            # trader_logger.debug(f"Existing Timestamps: {existing_timestamps}")
-
-            # Check if a row with the same timestamp exists in self.data
-            if new_timestamp not in existing_timestamps:
+            key = (new_timestamp, new_close_value)
+            if key not in existing_rows:
                 trader_logger.info(f"New update, df regenerating with: {new_timestamp}")
-
                 self.data.append(new_data)
-                self.df = convert_to_dataframe(self.data)
+            else:
+                trader_logger.info(
+                    f"Updating existing row with timestamp: {new_timestamp}"
+                )
+                existing_rows[key] = new_data
+                self.data = list(existing_rows.values())
 
-                if self.trigger_conditions_met:
-                    # Check if the entry conditions are met
-                    self.curr_entry_stats = self.check_entry_conditions(self.df)
+            self.df = convert_to_dataframe(self.data)
 
-                    # If the entry conditions are met, place an order
-                    if self.curr_entry_stats["entry_conditions_met"]:
-                        trader_logger.info("Entry conditions met, placing order...")
-                        # Place an order
-                        self.place_order()
-                        # Reset trigger conditions
-                        self.trigger_conditions_met = False
-
-                if self.check_trigger_conditions(self.df):
-                    self.trigger_conditions_met = True
-                else:
+            if self.trigger_conditions_met:
+                entry_conditions_met, curr_entry_stats = check_entry_conditions(self.df)
+                if entry_conditions_met:
+                    trader_logger.info("Entry conditions met, placing order...")
+                    await self.place_order(curr_entry_stats)
                     self.trigger_conditions_met = False
+
+            if check_trigger_conditions(self.df):
+                self.trigger_conditions_met = True
+            else:
+                self.trigger_conditions_met = False
 
             await self.maintain_data_size()
         else:
             trader_logger.debug("[WARNING WARNING] data: MISSING")
 
-    async def place_order(self):
+    async def place_order(self, curr_entry_stats):
         trader_logger.info("Placing order...")
         if self.entry_point_callback:
             await self.entry_point_callback(
                 format_trigger_stats(self.curr_trigger_stats)
             )
-            await self.entry_point_callback(format_entry_stats(self.curr_entry_stats))
+            await self.entry_point_callback(format_entry_stats(curr_entry_stats))
 
     async def maintain_data_size(self):
         if len(self.df) > 1000:  # Limit data size to 1000 records
@@ -188,83 +193,64 @@ class Trader:
         # print(self.df.describe())
         return self.df
 
-    def check_entry_conditions(self, df_to_check):
-        last_candle = df_to_check.iloc[-1]
-        second_last_candle = df_to_check.iloc[-2]
+    def run_backtest(self, df, check_trigger_conditions, check_entry_conditions):
+        trader_logger.info("Starting backtest...")
+        backtest_results = []
+        trigger_conditions_met = False
+        temp_trigger_event = None  # Temporary variable to hold the trigger event
 
-        # The next candle retraces and closes back through the red Bollinger band.
-        retraces_through_band = last_candle["Close"] > last_candle["Bollinger_Lower_2"]
+        trader_logger.info(f"Total data points for backtest: {len(df)}")
 
-        # RSI goes above 20
-        rsi_val = last_candle["RSI"]
-        rsi_above_20 = rsi_val > 20
+        for i in range(1, len(df)):
+            temp_df = df.iloc[: i + 1].copy()
 
-        # Stochastic lines cross between the 20 and 40 levels
-        last_candle_stoch = last_candle["Stochastic"]
+            trader_logger.info(f"Checking data point {i+1}/{len(df)}...")
 
-        stochastic_cross = (second_last_candle["Stochastic"] < 20) and (
-            last_candle_stoch > 20
-        )
-        stochastic_between_20_and_40 = 20 < last_candle["Stochastic"] < 40
+            if trigger_conditions_met:
+                trader_logger.info(
+                    "Trigger conditions previously met, checking entry conditions."
+                )
+                entry_conditions_met, curr_entry_stats = check_entry_conditions(temp_df)
 
-        self.curr_entry_stats = {
-            "retraces_through_band": retraces_through_band,
-            "rsi_above_20": rsi_above_20,
-            "rsi_val": rsi_val,
-            "stochastic_cross": stochastic_cross,
-            "stochastic_between_20_and_40": stochastic_between_20_and_40,
-            "last_candle_stoch": last_candle_stoch,
-        }
+                if entry_conditions_met:
+                    entry_time = temp_df.iloc[-1]["Timestamp"]
+                    trader_logger.info(f"Entry condition met at {entry_time}")
 
-        print(format_trigger_stats(self.curr_trigger_stats))
-        print(format_entry_stats(self.curr_entry_stats))
+                    # Add the trigger event since entry is now confirmed
+                    if temp_trigger_event:
+                        backtest_results.append(temp_trigger_event)
+                        temp_trigger_event = None  # Reset the temp trigger event
 
-        if (
-            retraces_through_band
-            and rsi_above_20
-            and stochastic_cross
-            and stochastic_between_20_and_40
-        ):
-            return True
+                    backtest_results.append(
+                        {
+                            "event": "entry",
+                            "timestamp": entry_time,
+                            "conditions": curr_entry_stats,
+                        }
+                    )
+                    trigger_conditions_met = False
+                else:
+                    trader_logger.info("Entry conditions not met.")
 
-        return False
+            trigger_conditions_met, curr_trigger_stats = check_trigger_conditions(
+                temp_df
+            )
 
-    def check_trigger_conditions(self, df_to_check):
-        # Check if the last candle touches or penetrates the lower red Bollinger band
-        last_candle = df_to_check.iloc[-1]
-        lower_bollinger = last_candle["Bollinger_Lower_2"]
+            if trigger_conditions_met:
+                trigger_time = temp_df.iloc[-1]["Timestamp"]
+                trader_logger.info(f"Trigger condition met at {trigger_time}")
 
-        touch_or_penetrate = any(
-            [
-                last_candle["Open"] <= lower_bollinger,
-                last_candle["Close"] <= lower_bollinger,
-                last_candle["Low"] <= lower_bollinger,
-                last_candle["High"] <= lower_bollinger,
-            ]
-        )
+                # Store the trigger event in the temporary variable
+                temp_trigger_event = {
+                    "event": "trigger",
+                    "timestamp": trigger_time,
+                    "conditions": curr_trigger_stats,
+                }
+            else:
+                trader_logger.info("Trigger conditions not met.")
 
-        # Check if both RSI and stochastic are below the 20 level for the last candle
-        rsi_val = last_candle["RSI"]
-        rsi_below_20 = rsi_val < 20
-
-        last_candle_stoch = last_candle["Stochastic"]
-        stochastic_below_20 = last_candle_stoch < 20
-
-        self.curr_trigger_stats = {
-            "touch_or_penetrate": touch_or_penetrate,
-            "rsi_val": rsi_val,
-            "rsi_below_20": rsi_below_20,
-            "stoch_val": last_candle_stoch,
-            "stochastic_below_20": stochastic_below_20,
-        }
-
-        # Both conditions must be met
-        if touch_or_penetrate and (rsi_below_20 or stochastic_below_20):
-            # Debug / pretty print for understanding
-
-            self.trigger_conditions_met = True
-            return True
-        return False
+        trader_logger.info("Backtest completed.")
+        return backtest_results
 
     def get_data_last_n_hours(self, hours):
         # Get the latest timestamp in the DataFrame

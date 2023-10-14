@@ -109,3 +109,120 @@ def format_entry_stats(entry_stats: dict):
     lines.append("".center(width, "="))
 
     return "\n".join(lines)
+
+
+def check_trigger_conditions(df_to_check):
+    """
+    Check if trigger conditions are met for trading.
+    :param df_to_check: DataFrame containing market data.
+    :return: Tuple containing a boolean and a dictionary.
+             The boolean indicates if the trigger conditions are met.
+             The dictionary contains details about the trigger conditions.
+    """
+
+    # Get the last row (last candle) from the DataFrame
+    last_candle = df_to_check.iloc[-1]
+
+    # Check if the last candle touches or penetrates the lower red Bollinger band
+    lower_bollinger = last_candle["Bollinger_Lower_2"]
+
+    touch_or_penetrate = any(
+        [
+            last_candle["Open"] <= lower_bollinger,
+            last_candle["Close"] <= lower_bollinger,
+            last_candle["Low"] <= lower_bollinger,
+            last_candle["High"] <= lower_bollinger,
+        ]
+    )
+
+    # Check if both RSI and stochastic are below the 20 level for the last candle
+    rsi_val = last_candle["RSI"]
+    rsi_below_20 = rsi_val < 20
+
+    last_candle_stoch = last_candle["Stochastic"]
+    stochastic_below_20 = last_candle_stoch < 20
+
+    # Create a dictionary to store the current trigger stats
+    curr_trigger_stats = {
+        "touch_or_penetrate": touch_or_penetrate,
+        "rsi_val": rsi_val,
+        "rsi_below_20": rsi_below_20,
+        "stoch_val": last_candle_stoch,
+        "stochastic_below_20": stochastic_below_20,
+    }
+
+    trigger_conditions_met = touch_or_penetrate and (
+        rsi_below_20 or stochastic_below_20
+    )
+
+    return trigger_conditions_met, curr_trigger_stats
+
+
+def check_entry_conditions(df_to_check):
+    """
+    Check if entry conditions are met for trading.
+    :param df_to_check: DataFrame containing market data.
+    :return: Tuple containing a boolean and a dictionary.
+             The boolean indicates if the entry conditions are met.
+             The dictionary contains details about the entry conditions.
+    """
+
+    last_candle = df_to_check.iloc[-1]
+    second_last_candle = df_to_check.iloc[-2]
+
+    # The next candle retraces and closes back through the red Bollinger band.
+    retraces_through_band = last_candle["Close"] > last_candle["Bollinger_Lower_2"]
+
+    # RSI goes above 20
+    rsi_val = last_candle["RSI"]
+    rsi_above_20 = rsi_val > 20
+
+    # Stochastic lines cross between the 20 and 40 levels
+    last_candle_stoch = last_candle["Stochastic"]
+    second_last_candle_stoch = second_last_candle["Stochastic"]
+
+    stochastic_cross = (second_last_candle_stoch < 20) and (last_candle_stoch > 20)
+    stochastic_between_20_and_40 = 20 < last_candle_stoch < 40
+
+    curr_entry_stats = {
+        "retraces_through_band": retraces_through_band,
+        "rsi_above_20": rsi_above_20,
+        "rsi_val": rsi_val,
+        "stochastic_cross": stochastic_cross,
+        "stochastic_between_20_and_40": stochastic_between_20_and_40,
+        "last_candle_stoch": last_candle_stoch,
+    }
+
+    entry_conditions_met = (
+        retraces_through_band
+        and rsi_above_20
+        and stochastic_cross
+        and stochastic_between_20_and_40
+    )
+
+    return entry_conditions_met, curr_entry_stats
+
+
+def format_backtest_results(results):
+    formatted_results = "📊 **Backtest Results:** 📊\n\n"
+    trigger_event = None
+
+    for event in results:
+        if event["event"] == "trigger":
+            trigger_event = event
+        elif event["event"] == "entry":
+            formatted_results += f"🔻 **Trigger Event** 🔻\n"
+            formatted_results += f"- Timestamp: `{trigger_event['timestamp']}`\n"
+            for key, value in trigger_event["conditions"].items():
+                formatted_results += f"  - {key}: `{value}`\n"
+
+            formatted_results += f"🔺 **Entry Event** 🔺\n"
+            formatted_results += f"- Timestamp: `{event['timestamp']}`\n"
+            for key, value in event["conditions"].items():
+                formatted_results += f"  - {key}: `{value}`\n"
+
+            formatted_results += f"➡️➡️➡️➡️➡️➡️➡️\n\n"
+
+    return formatted_results[
+        :4000
+    ]  # Limiting characters to 4000 to avoid Discord's message length limit
