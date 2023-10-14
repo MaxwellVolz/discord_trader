@@ -1,6 +1,9 @@
 import pandas as pd
 
 
+from logger_config import utils_logger
+
+
 def calc_bollinger_bands(df, window_size=20):
     df["SMA"] = df["Close"].rolling(window=window_size).mean().ffill()
     df["Rolling_STD"] = df["Close"].rolling(window=window_size).std().ffill()
@@ -30,7 +33,7 @@ def calc_stochastic(df, window=14):
 
 
 def convert_to_dataframe(candle_data):
-    print("Converting to dataframe...")
+    utils_logger.info("Converting to dataframe...")
     df = pd.DataFrame(
         candle_data, columns=["UnixTimestamp", "Open", "High", "Low", "Close", "Volume"]
     )
@@ -52,7 +55,7 @@ def convert_to_dataframe(candle_data):
     df = calc_RSI(df)
     df = calc_stochastic(df)
 
-    # print(df.describe())
+    # utils_logger.info(df.describe())
     return df
 
 
@@ -226,3 +229,61 @@ def format_backtest_results(results):
     return formatted_results[
         :4000
     ]  # Limiting characters to 4000 to avoid Discord's message length limit
+
+
+def run_backtest(df, check_trigger_conditions, check_entry_conditions):
+    utils_logger.info("Starting backtest...")
+    backtest_results = []
+    trigger_conditions_met = False
+    temp_trigger_event = None  # Temporary variable to hold the trigger event
+
+    utils_logger.info(f"Total data points for backtest: {len(df)}")
+
+    for i in range(1, len(df)):
+        temp_df = df.iloc[: i + 1].copy()
+
+        utils_logger.info(f"Checking data point {i+1}/{len(df)}...")
+
+        if trigger_conditions_met:
+            utils_logger.info(
+                "Trigger conditions previously met, checking entry conditions."
+            )
+            entry_conditions_met, curr_entry_stats = check_entry_conditions(temp_df)
+
+            if entry_conditions_met:
+                entry_time = temp_df.iloc[-1]["Timestamp"]
+                utils_logger.info(f"Entry condition met at {entry_time}")
+
+                # Add the trigger event since entry is now confirmed
+                if temp_trigger_event:
+                    backtest_results.append(temp_trigger_event)
+                    temp_trigger_event = None  # Reset the temp trigger event
+
+                backtest_results.append(
+                    {
+                        "event": "entry",
+                        "timestamp": entry_time,
+                        "conditions": curr_entry_stats,
+                    }
+                )
+                trigger_conditions_met = False
+            else:
+                utils_logger.info("Entry conditions not met.")
+
+        trigger_conditions_met, curr_trigger_stats = check_trigger_conditions(temp_df)
+
+        if trigger_conditions_met:
+            trigger_time = temp_df.iloc[-1]["Timestamp"]
+            utils_logger.info(f"Trigger condition met at {trigger_time}")
+
+            # Store the trigger event in the temporary variable
+            temp_trigger_event = {
+                "event": "trigger",
+                "timestamp": trigger_time,
+                "conditions": curr_trigger_stats,
+            }
+        else:
+            utils_logger.info("Trigger conditions not met.")
+
+    utils_logger.info("Backtest completed.")
+    return backtest_results

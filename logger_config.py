@@ -20,9 +20,18 @@ trader_logger.addHandler(trader_file_handler)
 
 # Setup for plot.py logger
 plot_logger = logging.getLogger("plot")
-plot_logger.setLevel(logging.INFO)
+plot_logger.setLevel(logging.DEBUG)
 plot_file_handler = logging.FileHandler("plot.log")
 plot_file_handler.setFormatter(
     logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 )
 plot_logger.addHandler(plot_file_handler)
+
+# Setup for plot.py logger
+utils_logger = logging.getLogger("utils")
+utils_logger.setLevel(logging.DEBUG)
+plot_file_handler = logging.FileHandler("utils.log")
+plot_file_handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+)
+utils_logger.addHandler(plot_file_handler)

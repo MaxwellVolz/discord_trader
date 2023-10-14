@@ -193,65 +193,6 @@ class Trader:
         # print(self.df.describe())
         return self.df
 
-    def run_backtest(self, df, check_trigger_conditions, check_entry_conditions):
-        trader_logger.info("Starting backtest...")
-        backtest_results = []
-        trigger_conditions_met = False
-        temp_trigger_event = None  # Temporary variable to hold the trigger event
-
-        trader_logger.info(f"Total data points for backtest: {len(df)}")
-
-        for i in range(1, len(df)):
-            temp_df = df.iloc[: i + 1].copy()
-
-            trader_logger.info(f"Checking data point {i+1}/{len(df)}...")
-
-            if trigger_conditions_met:
-                trader_logger.info(
-                    "Trigger conditions previously met, checking entry conditions."
-                )
-                entry_conditions_met, curr_entry_stats = check_entry_conditions(temp_df)
-
-                if entry_conditions_met:
-                    entry_time = temp_df.iloc[-1]["Timestamp"]
-                    trader_logger.info(f"Entry condition met at {entry_time}")
-
-                    # Add the trigger event since entry is now confirmed
-                    if temp_trigger_event:
-                        backtest_results.append(temp_trigger_event)
-                        temp_trigger_event = None  # Reset the temp trigger event
-
-                    backtest_results.append(
-                        {
-                            "event": "entry",
-                            "timestamp": entry_time,
-                            "conditions": curr_entry_stats,
-                        }
-                    )
-                    trigger_conditions_met = False
-                else:
-                    trader_logger.info("Entry conditions not met.")
-
-            trigger_conditions_met, curr_trigger_stats = check_trigger_conditions(
-                temp_df
-            )
-
-            if trigger_conditions_met:
-                trigger_time = temp_df.iloc[-1]["Timestamp"]
-                trader_logger.info(f"Trigger condition met at {trigger_time}")
-
-                # Store the trigger event in the temporary variable
-                temp_trigger_event = {
-                    "event": "trigger",
-                    "timestamp": trigger_time,
-                    "conditions": curr_trigger_stats,
-                }
-            else:
-                trader_logger.info("Trigger conditions not met.")
-
-        trader_logger.info("Backtest completed.")
-        return backtest_results
-
     def get_data_last_n_hours(self, hours):
         # Get the latest timestamp in the DataFrame
         latest_timestamp = self.df["Timestamp"].max()

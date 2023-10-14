@@ -10,6 +10,7 @@ from bitget.utils import (
     check_entry_conditions,
     check_trigger_conditions,
     format_backtest_results,
+    run_backtest,
 )
 
 from logger_config import main_logger
@@ -71,9 +72,7 @@ async def backtest(ctx, hours: int = 8):
     data = trader.get_data_last_n_hours(hours)
 
     # Run backtest
-    results = trader.run_backtest(
-        data, check_entry_conditions, check_trigger_conditions
-    )
+    results = run_backtest(data, check_entry_conditions, check_trigger_conditions)
 
     # Format and send the results
     formatted_results = format_backtest_results(results)
